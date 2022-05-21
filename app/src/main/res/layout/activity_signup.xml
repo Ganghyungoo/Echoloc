@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Signup">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/purple_200"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10sp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:tint="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="회원가입"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:id="@+id/et_name"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginTop="40sp"
+        android:background="@drawable/et_background"
+        android:hint="이름"
+        android:inputType="textEmailAddress"
+        android:padding="10sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="20dp"
+        android:id="@+id/et_email"
+        android:hint="이메일"
+        android:inputType="textEmailAddress"
+        android:padding="10sp"
+        android:background="@drawable/et_background"
+        android:layout_height="40sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/et_pass"
+        android:hint="비밀번호"
+        android:inputType="textPassword"
+        android:padding="10sp"
+        android:background="@drawable/et_background"
+        android:layout_height="40sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="20dp"
+        android:id="@+id/et_confirmpass"
+        android:hint="비밀번호 확인"
+        android:inputType="textPassword"
+        android:padding="10sp"
+        android:background="@drawable/et_background"
+        android:layout_height="40sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/et_call"
+        android:hint="전화번호"
+        android:inputType="phone"
+        android:padding="10sp"
+        android:background="@drawable/et_background"
+        android:layout_height="40sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_marginTop="10sp"
+        android:layout_marginHorizontal="50sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup_btn"
+        android:text="회원가입"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="14sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="이미 계정을 가지고 계신가요?"
+            android:textColor="@color/drak_gray"
+            android:textSize="11sp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="로그인"
+            android:id="@+id/btn_gotologin"
+            android:textColor="@color/purple_200"
+            android:textSize="11sp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".CreateRoom">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/purple_200"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:text="그룹방 생성"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="22sp"
+            android:layout_height="22sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20sp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_roomname"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:background="@drawable/et_background"
+        android:hint="방 이름 작성"
+        android:padding="5sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginHorizontal="30sp" />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:text="비공개" />
+    <Button
+        android:id="@+id/btn_createroom"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10sp"
+        android:text="방 생성"
+        android:background="@color/purple_200"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
