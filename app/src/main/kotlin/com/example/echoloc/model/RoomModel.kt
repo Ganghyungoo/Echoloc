@@ -2,12 +2,12 @@ package com.example.echoloc.model
 
 class RoomModel {
 
-    private lateinit var group_id:String
-    private lateinit var roomname:String
-    private var isprivate:Int=0
-    private lateinit var admin_name:String
-    private lateinit var admin_id:String
-    private lateinit var admin_call:String
+    lateinit var group_id:String
+    lateinit var roomname:String
+    var isprivate:Int=0
+    lateinit var admin_name:String
+    lateinit var admin_id:String
+    lateinit var admin_call:String
 
     constructor(
         group_id:String,
