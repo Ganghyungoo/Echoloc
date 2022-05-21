@@ -24,7 +24,7 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
         pref=Pref(applicationContext)
         database=FirebaseDatabase.getInstance()
 
-
+// 왜 안바껴
         usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),pref.getData("pass"),pref.getData("call"));
     }
 
