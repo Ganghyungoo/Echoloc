@@ -9,7 +9,6 @@ import com.example.echoloc.model.Usermodel
 import com.example.echoloc.util.showToast
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
 
 class Login : AppCompatActivity(),View.OnClickListener {
     lateinit var database: FirebaseDatabase
@@ -68,7 +67,7 @@ class Login : AppCompatActivity(),View.OnClickListener {
                 {
 
                     showToast(applicationContext, msg = "로그인 성공")
-                    startActivity(Intent(applicationContext,MainActivity2::class.java))
+                    startActivity(Intent(applicationContext,MainActivity::class.java))
                     finish()
 
 

@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.echoloc.database.Pref
-import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity2 : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var pref: Pref
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main)
         pref=Pref(applicationContext)
         btn_logout.setOnClickListener(this)
         btn_createroom.setOnClickListener(this)

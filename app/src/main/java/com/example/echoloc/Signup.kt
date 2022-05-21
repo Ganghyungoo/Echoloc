@@ -64,7 +64,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                     preferance.saveData("email",email)
                     preferance.saveData("call",call)
                     showToast(applicationContext, msg = "회원가입 완료!")
-                    startActivity(Intent(applicationContext,MainActivity2::class.java))
+                    startActivity(Intent(applicationContext,MainActivity::class.java))
                     finish()
                 }
             }else{
