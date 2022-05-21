@@ -16,7 +16,7 @@ class MainActivity2 : AppCompatActivity(), View.OnClickListener {
         btn_logout.setOnClickListener(this)
         btn_createroom.setOnClickListener(this)
     }
-//강현구 왔다가감
+//강현구 왔다가감ㅋㅋㅋ
     override fun onClick(p0: View?) {
         when(p0)
         {
