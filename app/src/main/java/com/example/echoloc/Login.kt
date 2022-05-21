@@ -72,7 +72,7 @@ class Login : AppCompatActivity(),View.OnClickListener {
 
 
                 }else {
-                    showToast(applicationContext, msg = "로그인을 실패했습니다 이메일과 패스워드를 확인하세요")
+                    showToast(applicationContext, msg = "로그인을 실패했습니다. 이메일과 패스워드를 확인하세요")
                 }
             }
 

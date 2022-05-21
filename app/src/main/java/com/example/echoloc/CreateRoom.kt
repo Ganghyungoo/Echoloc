@@ -12,10 +12,10 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_create_room.*
 
 class CreateRoom : AppCompatActivity() ,View.OnClickListener{
-    lateinit var databaseReference: DatabaseReference
-    lateinit var database: FirebaseDatabase
-    lateinit var pref: Pref
-    lateinit var usermodel: Usermodel
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var database: FirebaseDatabase
+    private lateinit var pref: Pref
+    private lateinit var usermodel: Usermodel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_room)
@@ -24,7 +24,8 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
         pref=Pref(applicationContext)
         database=FirebaseDatabase.getInstance()
 
-        usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),pref.getData("call"),"")
+
+        usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),pref.getData("pass"),pref.getData("call"));
     }
 
     override fun onClick(p0: View?) {

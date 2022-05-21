@@ -1,11 +1,12 @@
 package com.example.echoloc.model
 
 class Usermodel() {
-   lateinit var id:String
-   lateinit var name:String
-   lateinit var email:String
-   lateinit var pass:String
-   lateinit var call:String
+
+   private lateinit var id:String
+   private lateinit var name:String
+   private lateinit var email:String
+   private lateinit var pass:String
+   private lateinit var call:String
 
     constructor(
         id:String,
