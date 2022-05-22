@@ -60,6 +60,7 @@ class Login : AppCompatActivity(),View.OnClickListener {
                         preferance.saveData("id",value.id)
                         preferance.saveData("email",value.email)
                         preferance.saveData("call",value.call)
+
                     }
                     list.add(value)
                 }

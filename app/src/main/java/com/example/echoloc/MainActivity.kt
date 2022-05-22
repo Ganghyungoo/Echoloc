@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.echoloc.adapter.ViewPagerAdapter
 import com.example.echoloc.database.Pref
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -15,6 +18,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         pref=Pref(applicationContext)
         btn_logout.setOnClickListener(this)
         btn_createroom.setOnClickListener(this)
+        var fragment= arrayListOf(
+            PublicRooms(),
+            PrivateRooms()
+        )
+        viewpager.adapter=ViewPagerAdapter(this,fragment)
+
+        TabLayoutMediator(tablayout,viewpager, object :TabLayoutMediator.TabConfigurationStrategy
+        {
+            override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {
+                when(position)
+                {
+                    0 ->
+                    {
+                        tab.text="공개 방"
+                    }
+                    1->
+                    {
+                        tab.text="비공개 방"
+                    }
+                }
+            }
+
+        }).attach()
+
     }
 //강현구 왔다가감ㅋㅋㅋ
     override fun onClick(p0: View?) {
