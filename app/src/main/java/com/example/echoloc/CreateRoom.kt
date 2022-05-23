@@ -16,6 +16,7 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
     private lateinit var database: FirebaseDatabase
     private lateinit var pref: Pref
     private lateinit var usermodel: Usermodel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_room)
@@ -24,7 +25,6 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
         pref=Pref(applicationContext)
         database=FirebaseDatabase.getInstance()
 
-// 왜 안바껴
         usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),pref.getData("pass"),pref.getData("call"));
     }
 
@@ -72,8 +72,8 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
                 showToast(applicationContext,"그룹 방 생성 완료")
                 finish()
 
-        }
+            }
 
+        }
     }
-}
 }
