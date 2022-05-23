@@ -85,5 +85,3 @@ class Login : AppCompatActivity(),View.OnClickListener {
 
     }
 }
-
-//dsadsa
