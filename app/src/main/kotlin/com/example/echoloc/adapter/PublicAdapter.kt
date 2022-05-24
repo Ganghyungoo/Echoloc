@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.R
 import com.example.echoloc.model.RoomModel
+import kotlinx.android.synthetic.main.rv_layout.view.*
 
 class PublicAdapter(var context: Context, var list: ArrayList<RoomModel>) :RecyclerView.Adapter<PublicAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        var joinroom = itemView.joinroom
+        var txt_roomname = itemView.txt_roomname
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,7 +21,13 @@ class PublicAdapter(var context: Context, var list: ArrayList<RoomModel>) :Recyc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.txt_roomname.text = list[position].roomname
 
+        if (list[position].isAdmin) {
+            holder.joinroom.visibility = View.GONE
+        } else {
+            holder.joinroom.visibility = View.VISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
