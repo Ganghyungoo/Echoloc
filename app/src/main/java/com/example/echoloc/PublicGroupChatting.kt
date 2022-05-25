@@ -15,7 +15,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_public_group_chatting.*
 
 class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
-
+// wws
     lateinit var database: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
     var group_id = ""
