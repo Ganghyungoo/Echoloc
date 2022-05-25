@@ -4,15 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.echoloc.database.Pref
+import com.example.echoloc.model.MessageModel
 import com.example.echoloc.model.RoomModel
 import com.example.echoloc.model.Usermodel
+import com.example.echoloc.util.getDateTime
 import com.example.echoloc.util.showToast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_create_room.*
+import kotlinx.android.synthetic.main.activity_create_room.btn_back
+import kotlinx.android.synthetic.main.activity_public_group_chatting.*
 
 class CreateRoom : AppCompatActivity() ,View.OnClickListener{
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var databaseReference1: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var pref: Pref
     private lateinit var usermodel: Usermodel
@@ -24,8 +29,9 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
         btn_back.setOnClickListener(this)
         pref=Pref(applicationContext)
         database=FirebaseDatabase.getInstance()
+        databaseReference1 = database.getReference("Echoloc").child("chattings")
 
-        usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),pref.getData("pass"),pref.getData("call"));
+        usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),"",pref.getData("call"));
     }
 
     override fun onClick(p0: View?) {
@@ -64,8 +70,13 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
             }
 
         }else{
+            var model = MessageModel(pref.getData("name")+"create the group", getDateTime(), pref.getData("id"), pref.getData("name"), "1", "0")
+
             databaseReference=database.getReference("Echoloc").child("public")
             var key=databaseReference.push().key
+
+            var key1 = databaseReference1.push().key
+            databaseReference1.child(key!!).child(key1!!).setValue(model)
 
             var roomModel=RoomModel(key!!,roomname,0,usermodel.name,usermodel.id,usermodel.call)
             databaseReference.child(key).setValue(roomModel).addOnCompleteListener {

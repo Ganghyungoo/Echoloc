@@ -58,7 +58,7 @@ class PrivateRooms : Fragment() {
                     var value = postsnapshot.getValue(RoomModel::class.java)
                     var isAdmin = false
                     if (pref.getData("id") == value!!.admin_id) {
-                        value.isAdmin(true)
+                        value.isGroupjoined(true)
                     }
                     list.add(value!!)
                 }

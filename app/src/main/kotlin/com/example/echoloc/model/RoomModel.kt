@@ -8,7 +8,7 @@ class RoomModel() {
     lateinit var admin_name:String
     lateinit var admin_id:String
     lateinit var admin_call:String
-    var isAdmin = false
+    var isgroupjoined = false
 
     constructor(
         group_id: String,
@@ -27,7 +27,7 @@ class RoomModel() {
         this.roomname = roomname
     }
 
-    public fun isAdmin(isAdmin: Boolean) {
-        this.isAdmin = isAdmin
+    public fun isGroupjoined(isAdmin: Boolean) {
+        this.isgroupjoined = isAdmin
     }
 }

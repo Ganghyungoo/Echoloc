@@ -17,7 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Echoloc"
         tools:targetApi="31">
-
+        <activity
+            android:name=".PrivateGroupChatting"
+            android:exported="false" />
+        <activity
+            android:name=".PublicGroupChatting"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -36,7 +41,6 @@
         <activity
             android:name=".MapsActivity"
             android:exported="false" />
-
         <activity
             android:name=".CreateRoom"
             android:exported="false" />

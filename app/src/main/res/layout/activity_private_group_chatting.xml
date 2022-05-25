@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PublicGroupChatting">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/purple_200"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:text="그룹 채팅"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="22sp"
+            android:layout_height="22sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20sp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/send_message_layout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/send_message_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10sp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/btn_send"
+                android:hint="Type a message"
+                android:padding="5dp"
+                android:background="@drawable/et_background"/>
+
+            <ImageView
+                android:id="@+id/btn_send"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="5dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_send_24"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

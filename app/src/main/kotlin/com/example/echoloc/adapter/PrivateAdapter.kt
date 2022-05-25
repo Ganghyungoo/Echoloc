@@ -25,7 +25,7 @@ class PrivateAdapter(var context: Context, var list: ArrayList<RoomModel>) :Recy
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.txt_roomname.text = list[position].roomname
 
-        if (list[position].isAdmin) {
+        if (list[position].isgroupjoined) {
             holder.joinroom.visibility = View.GONE
         } else {
             holder.joinroom.visibility = View.VISIBLE
