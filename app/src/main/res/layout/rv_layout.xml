@@ -40,7 +40,7 @@
                 android:id="@+id/joinroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="join room"
+                android:text="방 참여"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textAllCaps="false"

@@ -20,17 +20,13 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
     lateinit var databaseReference: DatabaseReference
     var group_id = ""
     lateinit var pref: Pref
-
     lateinit var adapter: PublicChattingAdapter
     lateinit var list: ArrayList<MessageModel>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_public_group_chatting)
-
         btn_back.setOnClickListener(this)
         btn_messagesend.setOnClickListener(this)
-
         database = FirebaseDatabase.getInstance()
         pref = Pref(applicationContext)
         databaseReference = database.getReference("Echoloc").child("chattings")
@@ -82,9 +78,17 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                     btn_messagesend.visibility = View.GONE
                     progressBar.visibility = View.VISIBLE
 
-                    var model = MessageModel(message, getDateTime(), pref.getData("id"), pref.getData("name"), "0", "0")
+                    var model = MessageModel(
+                        message,
+                        getDateTime(),
+                        pref.getData("id"),
+                        pref.getData("name"),
+                        "0",
+                        "0"
+                    )
                     var key = databaseReference.push().key
-                    databaseReference.child(group_id).child(key!!).setValue(model).addOnCompleteListener {
+                    databaseReference.child(group_id).child(key!!).setValue(model)
+                        .addOnCompleteListener {
                         et_message.setText("")
                         btn_messagesend.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE

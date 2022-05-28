@@ -22,9 +22,7 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
 
     lateinit var adapter: PublicAdapter
     lateinit var list:ArrayList<RoomModel>
-
     lateinit var recyclerView: RecyclerView
-
     lateinit var database: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
     lateinit var databaseReference1: DatabaseReference
@@ -91,7 +89,8 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
 
         var model = MessageModel(
             pref.getData("name")+"joined the group",
-            getDateTime(), pref.getData("id"),
+            getDateTime(),
+            pref.getData("id"),
             pref.getData("name"),
             "1",
             "1")

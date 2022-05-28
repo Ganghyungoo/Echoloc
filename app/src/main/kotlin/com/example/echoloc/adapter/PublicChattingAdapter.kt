@@ -49,7 +49,7 @@ class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String): Rec
         var recieve_message_name = itemview.recieve_message_name
         var recieve_message_time = itemview.recieve_message_time
         var send_message_name = itemview.send_message_name
-        var send_message_time = itemview.send_message_time
+        var sendmessage_datetime = itemview.sendmessage_datetime
 
 
         public fun bindView(model: MessageModel, user_id: String) {
@@ -58,7 +58,7 @@ class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String): Rec
                 send_message.visibility = View.VISIBLE
                 recieve_message_layout.visibility = View.GONE
                 send_message_name.text = model.message
-                send_message_time.text = model.date_time
+                sendmessage_datetime.text = model.date_time
             } else {
                 send_message.visibility = View.GONE
                 recieve_message_layout.visibility = View.VISIBLE
