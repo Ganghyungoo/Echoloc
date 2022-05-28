@@ -9,7 +9,11 @@ import com.example.echoloc.R
 import com.example.echoloc.model.RoomModel
 import kotlinx.android.synthetic.main.rv_layout.view.*
 
-class PrivateAdapter(var context: Context, var list: ArrayList<RoomModel>) :RecyclerView.Adapter<PrivateAdapter.ViewHolder>(){
+class PrivateAdapter(var context: Context,
+                     var list: ArrayList<RoomModel>,
+                     var user_id: String,
+                     var ongroupJoin: onClick) :
+    RecyclerView.Adapter<PrivateAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var joinroom = itemView.joinroom
@@ -29,10 +33,22 @@ class PrivateAdapter(var context: Context, var list: ArrayList<RoomModel>) :Recy
             holder.joinroom.visibility = View.GONE
         } else {
             holder.joinroom.visibility = View.VISIBLE
+            holder.joinroom.text="방 참여하기"
         }
+
+
+      holder.joinroom.setOnClickListener {
+        if(holder.joinroom.text=="방 참여하기") {
+            ongroupJoin.onGroupJoined(list[position])
+        }
+      }
+
     }
 
     override fun getItemCount(): Int {
         return list.size
+    }
+    public interface onClick {
+        fun onGroupJoined(roomModel: RoomModel)
     }
 }

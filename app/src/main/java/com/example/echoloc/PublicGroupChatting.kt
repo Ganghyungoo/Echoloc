@@ -94,7 +94,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                         progressBar.visibility = View.GONE
                     }
                 } else {
-                    showToast(applicationContext, "Please enter message")
+                    showToast(applicationContext, "메세지를 입력해주세요!")
                 }
             }
         }

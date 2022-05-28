@@ -100,7 +100,7 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
             .setValue(usermodel).addOnCompleteListener {
             var key1 = databaseReference1.push().key
             databaseReference1.child(key!!).child(key1!!).setValue(model)
-            showToast(requireContext(), "Group joined Successfully")
+            showToast(requireContext(), "그룹 참여 성공!")
         }
 
     }
