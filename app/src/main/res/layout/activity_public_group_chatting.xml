@@ -63,7 +63,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/btn_send"
                 android:background="@drawable/et_background"
-                android:hint="메시지를 입력하세요"
+                android:hint="Type a message"
                 android:padding="5dp" />
 
             <RelativeLayout
