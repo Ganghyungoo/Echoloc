@@ -27,6 +27,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_public_group_chatting)
         btn_back.setOnClickListener(this)
         btn_messagesend.setOnClickListener(this)
+        button.setOnClickListener(this)
         database = FirebaseDatabase.getInstance()
         pref = Pref(applicationContext)
         databaseReference = database.getReference("Echoloc").child("chattings")
@@ -96,6 +97,9 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                 } else {
                     showToast(applicationContext, "메세지를 입력해주세요!")
                 }
+            }
+            button -> {
+                startActivity(Intent(applicationContext, MapsActivity::class.java))
             }
         }
     }
