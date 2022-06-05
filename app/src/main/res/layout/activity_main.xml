@@ -23,23 +23,23 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="22sp"
+            android:layout_width="25sp"
             android:src="@drawable/ic_baseline_login_24"
             android:id="@+id/btn_logout"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20sp"
             android:layout_centerVertical="true"
-            android:layout_height="22sp"
+            android:layout_height="25sp"
             app:tint="@color/white" />
 
         <ImageView
             android:id="@+id/btn_createroom"
-            android:layout_width="22sp"
-            android:src="@drawable/ic_baseline_create_new_folder_24"
-            android:layout_toLeftOf="@+id/btn_logout"
-            android:layout_marginEnd="20sp"
+            android:layout_width="25sp"
+            android:layout_height="25sp"
             android:layout_centerVertical="true"
-            android:layout_height="22sp"
+            android:layout_marginEnd="20sp"
+            android:layout_toLeftOf="@+id/btn_logout"
+            android:src="@drawable/add_chat"
             app:tint="@color/white" />
 
     </RelativeLayout>

@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }).attach()
 
     }
-//강현구 왔다가감ㅋㅋㅋ
     override fun onClick(p0: View?) {
         when(p0)
         {
