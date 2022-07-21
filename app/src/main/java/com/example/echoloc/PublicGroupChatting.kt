@@ -22,6 +22,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
     lateinit var pref: Pref
     lateinit var adapter: PublicChattingAdapter
     lateinit var list: ArrayList<MessageModel>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_public_group_chatting)
@@ -99,7 +100,9 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                 }
             }
             button -> {
-                startActivity(Intent(applicationContext, MapsActivity::class.java))
+                val intent = Intent(applicationContext, MapActivity::class.java)
+                intent.putExtra("group_id", group_id)
+                startActivity(intent)
             }
         }
     }

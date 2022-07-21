@@ -18,6 +18,11 @@
         android:theme="@style/Theme.Echoloc"
         tools:targetApi="31">
         <activity
+            android:name=".MapActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".PrivateGroupChatting"
             android:exported="false" />
         <activity
@@ -40,7 +45,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:exported="false" />
+            android:exported="false"></activity>
         <activity
             android:name=".CreateRoom"
             android:exported="false" />
@@ -55,7 +60,7 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
