@@ -11,10 +11,11 @@ import com.example.echoloc.R
 import com.example.echoloc.model.RoomModel
 import kotlinx.android.synthetic.main.rv_layout.view.*
 
-class PublicAdapter(var context: Context,
-                    var list: ArrayList<RoomModel>,
-                    var user_id: String,
-                    var ongroupJoin: onClick
+class PublicAdapter(
+    var context: Context,
+    var list: ArrayList<RoomModel>,
+    var user_id: String,
+    var ongroupJoin: onClick
                     ) :RecyclerView.Adapter<PublicAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

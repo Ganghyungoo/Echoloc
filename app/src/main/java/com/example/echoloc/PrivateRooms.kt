@@ -1,37 +1,32 @@
 package com.example.echoloc
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.adapter.PrivateAdapter
-import com.example.echoloc.adapter.PublicAdapter
 import com.example.echoloc.database.Pref
-import com.example.echoloc.model.MessageModel
 import com.example.echoloc.model.RoomModel
 import com.example.echoloc.model.Usermodel
-import com.example.echoloc.util.getDateTime
 import com.example.echoloc.util.showToast
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_private_rooms.view.*
-import kotlinx.android.synthetic.main.fragment_public_rooms.*
-import kotlinx.android.synthetic.main.fragment_public_rooms.view.*
-import kotlinx.android.synthetic.main.fragment_public_rooms.view.recyclerview
 
 class PrivateRooms : Fragment(),PrivateAdapter.onClick {
 
     lateinit var adapter: PrivateAdapter
 
     lateinit var  databaseReference1: DatabaseReference
-    lateinit var list:ArrayList<RoomModel>
 
+    lateinit var list:ArrayList<RoomModel>
     lateinit var recyclerView: RecyclerView
+    lateinit var pref: Pref
 
     lateinit var database: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
-    lateinit var pref: Pref
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,17 +34,16 @@ class PrivateRooms : Fragment(),PrivateAdapter.onClick {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_private_rooms, container, false)
-
-        recyclerView = view.recyclerview_private
-        pref = Pref(requireContext())
         database=FirebaseDatabase.getInstance()
-        databaseReference=database.getReference("Echoloc").child("private")
+        pref = Pref(requireContext())
+
+        databaseReference = database.getReference("Echoloc").child("private")
         databaseReference1=database.getReference("Echoloc").child("private")
+        recyclerView = view.recyclerview_private
         list = ArrayList()
-        adapter = PrivateAdapter(requireContext(), list,pref.getData("id"),this)
+        adapter = PrivateAdapter(requireContext(), list, pref.getData("id"),this)
 
         recyclerView.adapter = adapter
-
         getPrivateRooms()
         return view
     }

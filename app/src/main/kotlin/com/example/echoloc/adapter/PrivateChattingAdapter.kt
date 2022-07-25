@@ -6,23 +6,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.R
 import com.example.echoloc.model.MessageModel
-import kotlinx.android.synthetic.main.activity_public_group_chatting.view.*
 import kotlinx.android.synthetic.main.rv_message.view.*
 import kotlinx.android.synthetic.main.rv_other.view.*
 
-class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
+class PrivateChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var list: ArrayList<MessageModel> = list
     var user_id: String = user_id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        var view:View
+        var view: View
         if (viewType == 0) {
             return MessageViewModel(
                 LayoutInflater.from(parent.context).inflate(R.layout.rv_message, parent, false)
             )
         }
-        return GroupJoinedModel(
+        if(viewType==2)
+        {
+            return MessageViewModel(
+                LayoutInflater.from(parent.context)
+                    .inflate(R.layout.acceptreject_layout, parent, false)
+            )
+        }
+            return GroupJoinedModel(
             LayoutInflater.from(parent.context).inflate(R.layout.rv_other, parent, false)
         )
     }
@@ -75,6 +81,4 @@ class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
             text_tittle.text = model.message
         }
     }
-
-
 }

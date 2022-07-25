@@ -3,11 +3,11 @@ package com.example.echoloc
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.example.echoloc.databinding.ActivityMapsBinding
+import com.example.echoloc.databinding.ActivityMapBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,13 +17,12 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_map.*
-import java.util.jar.Manifest
 
 class MapActivity : AppCompatActivity(),
     OnMapReadyCallback, View.OnClickListener {
 
     private lateinit var  mMap: GoogleMap
-    private lateinit var binding: ActivityMapsBinding
+    private lateinit var binding: ActivityMapBinding
 
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -43,7 +42,7 @@ class MapActivity : AppCompatActivity(),
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-        binding = ActivityMapsBinding.inflate(layoutInflater)
+        binding = ActivityMapBinding.inflate(layoutInflater)
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -65,7 +64,7 @@ class MapActivity : AppCompatActivity(),
         ) {
             return
         }
-        mMap.isMyLocationEnabled = true
+        mMap.isMyLocationEnabled
     }
 
     private  fun getLocation() {

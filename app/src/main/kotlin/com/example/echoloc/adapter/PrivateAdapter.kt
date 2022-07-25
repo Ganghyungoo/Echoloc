@@ -1,18 +1,22 @@
 package com.example.echoloc.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.echoloc.PrivateGroupChatting
 import com.example.echoloc.R
 import com.example.echoloc.model.RoomModel
 import kotlinx.android.synthetic.main.rv_layout.view.*
 
-class PrivateAdapter(var context: Context,
-                     var list: ArrayList<RoomModel>,
-                     var user_id: String,
-                     var ongroupJoin: onClick) :
+class PrivateAdapter(
+    var context: Context,
+    var list: ArrayList<RoomModel>,
+    var user_id: String,
+    var ongroupJoin: onClick
+) :
     RecyclerView.Adapter<PrivateAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,9 +42,12 @@ class PrivateAdapter(var context: Context,
 
 
       holder.joinroom.setOnClickListener {
-        if(holder.joinroom.text=="방 참여하기") {
-            ongroupJoin.onGroupJoined(list[position])
-        }
+//        if(holder.joinroom.text=="방 참여하기") {
+//            ongroupJoin.onGroupJoined(list[position])
+//        }else
+//        {
+            context.startActivity(Intent(context, PrivateGroupChatting::class.java))
+//        }
       }
 
     }
