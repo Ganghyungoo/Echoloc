@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.echoloc">
+    package="com.example.echoloc" >
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -16,14 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Echoloc"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
+            android:required="false" />
+
         <activity
             android:name=".MapActivity"
-            android:exported="true">
-
+            android:exported="true" >
         </activity>
         <activity
             android:name=".PrivateGroupChatting"
@@ -48,8 +49,7 @@
 
         <activity
             android:name=".CreateRoom"
-            android:exported="true"/>
-
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -64,10 +64,10 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

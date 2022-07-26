@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
     android:orientation="vertical"
     tools:context=".PublicGroupChatting">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/purple_200"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/purple_200">
 
         <TextView
             android:id="@+id/Room_name"
@@ -39,13 +40,14 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="0dp"
+            android:background="#00FFFFFF"
             android:text="지도" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,10 +55,10 @@
             android:layout_above="@+id/send_message_layout">
 
             <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
 
         <RelativeLayout
@@ -81,8 +83,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="5dp"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:layout_margin="5dp">
 
                 <ImageView
                     android:id="@+id/btn_messagesend"
@@ -94,10 +96,10 @@
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyle"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:indeterminateTint="@color/purple_200" />
+                    android:indeterminateTint="@color/purple_200"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

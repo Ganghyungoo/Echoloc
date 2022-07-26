@@ -18,16 +18,16 @@
 
         <Button
             android:id="@+id/btn_menu"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/ic_baseline_add_circle_24" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
             android:background="@drawable/cancel"
@@ -35,8 +35,8 @@
 
         <Button
             android:id="@+id/btn_grp_select"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="160dp"
@@ -45,18 +45,18 @@
 
         <Button
             android:id="@+id/btn_chat"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="80dp"
-            android:background="@color/cardview_shadow_end_color"
+            android:background="@drawable/ic_baseline_chat_bubble_24"
             android:visibility="gone"/>
 
         <Button
             android:id="@+id/btn_call"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="80dp"
@@ -65,8 +65,8 @@
 
         <Button
             android:id="@+id/btn_setting"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="bottom|center"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="160dp"
