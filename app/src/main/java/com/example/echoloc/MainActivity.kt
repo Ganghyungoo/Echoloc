@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btn_logout ->
             {
                 pref.clearData()
+                startActivity(Intent(applicationContext, SplashScreen::class.java))
                 finish()
             }
             btn_createroom -> {

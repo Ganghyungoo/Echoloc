@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.echoloc" >
+    package="com.example.echoloc">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Echoloc"
-        tools:targetApi="31" >
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -24,8 +27,7 @@
 
         <activity
             android:name=".MapActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".PrivateGroupChatting"
             android:exported="false" />
@@ -61,13 +63,19 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+
+        <service android:name=".locationapi.service.LocationService"
+            android:enabled="true"
+            android:exported="false"/>
     </application>
 
 </manifest>

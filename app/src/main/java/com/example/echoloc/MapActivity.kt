@@ -1,31 +1,43 @@
 package com.example.echoloc
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.example.echoloc.database.Pref
+import com.example.echoloc.locationapi.LocationManager
+import com.example.echoloc.locationapi.service.LocationService
+import com.example.echoloc.model.LocationModel
+import com.example.echoloc.permission.PermissionManager
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_map.*
-import java.util.jar.Manifest
 
 class MapActivity : AppCompatActivity(),
-    OnMapReadyCallback, View.OnClickListener {
+    OnMapReadyCallback, View.OnClickListener,
+    GoogleMap.OnMyLocationButtonClickListener{
 
     private lateinit var  mMap: GoogleMap
-
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     var group_id = ""
+
+    lateinit var database: FirebaseDatabase
+    lateinit var databaseReference: DatabaseReference
+    lateinit var pref: Pref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +49,63 @@ class MapActivity : AppCompatActivity(),
         btn_call.setOnClickListener(this)
         btn_setting.setOnClickListener(this)
 
+        database = FirebaseDatabase.getInstance()
+        databaseReference = database.getReference("Echoloc").child("location")
+
         group_id = intent.extras!!.getString("group_id", "")
+        pref = Pref(applicationContext)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        findViewById<Button>(R.id.btn_start).setOnClickListener{
+            Toast.makeText(this, "위치 공유 시작", Toast.LENGTH_SHORT).show()
+            btn_start.visibility = View.GONE
+            btn_stop.visibility = View.VISIBLE
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                PermissionManager.requestPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+                {
+                    requestLocation()
+                }
+            } else {
+                PermissionManager.requestPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)
+                {
+                    requestLocation()
+                }
+            }
+        }
+
+        findViewById<Button>(R.id.btn_stop).setOnClickListener{
+            Toast.makeText(this, "위치 공유 종료", Toast.LENGTH_SHORT).show()
+            LocationManager.stop(this)
+            btn_start.visibility = View.VISIBLE
+            btn_stop.visibility = View.GONE
+        }
+
+        if (LocationService.isLocationServiceRunning) {
+            requestLocation()
+        }
+
+    }
+
+    private fun requestLocation() {
+        LocationManager.Builder.create(this).request(true) { latitude, longitude ->
+
+//            val locationString = "$latitude\t$longitude"
+
+            var locationModel = LocationModel(pref.getData("id"), pref.getData("name"), latitude, longitude)
+            databaseReference.child(group_id).child(pref.getData("id")).setValue(locationModel).addOnCompleteListener{
+
+            }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -53,27 +115,34 @@ class MapActivity : AppCompatActivity(),
 
         if (ActivityCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             return
         }
+
         mMap.isMyLocationEnabled = true
+        mMap.setOnMyLocationButtonClickListener(this)
+
+
+
+
     }
 
     private  fun getLocation() {
         val task: Task<Location> = fusedLocationProviderClient.lastLocation
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                .checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
             return
         }
+
         task.addOnSuccessListener {
             if (it != null) {
                 val mylocation = LatLng(it.latitude, it.longitude)
@@ -82,6 +151,7 @@ class MapActivity : AppCompatActivity(),
             }
         }
     }
+
 
     override fun onClick(p0: View?) {
         when(p0)
@@ -108,8 +178,10 @@ class MapActivity : AppCompatActivity(),
 
             btn_grp_select ->
             {
+                LocationManager.stop(this)
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
 
             btn_chat ->
@@ -131,5 +203,9 @@ class MapActivity : AppCompatActivity(),
         }
     }
 
-
+    override fun onMyLocationButtonClick(): Boolean {
+        Toast.makeText(this, "내 위치로 이동", Toast.LENGTH_SHORT)
+            .show()
+        return false
+    }
 }
