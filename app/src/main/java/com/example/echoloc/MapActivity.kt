@@ -135,7 +135,7 @@ class MapActivity : AppCompatActivity(),
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-//
+
         getLocation()
 
         if (ActivityCompat.checkSelfPermission(
