@@ -132,7 +132,7 @@ class MapActivity : AppCompatActivity(),
 
         }
     }
-
+//
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
