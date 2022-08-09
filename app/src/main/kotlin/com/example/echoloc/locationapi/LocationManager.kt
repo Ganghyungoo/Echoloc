@@ -23,8 +23,8 @@ object LocationManager {
     private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
     private lateinit var onUpdateLocation: WeakReference<(latitude: Double, longitude: Double) -> Unit>
 
-    private var interval: Long = 30000
-    private var fastestInterval: Long = 10000
+    private var interval: Long = 8000
+    private var fastestInterval: Long = 4000
     private var priority: Int = com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 
     private val locationCallBack = object : LocationCallback() {
