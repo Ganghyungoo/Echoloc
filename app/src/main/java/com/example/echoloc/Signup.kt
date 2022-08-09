@@ -1,20 +1,36 @@
 package com.example.echoloc
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.Usermodel
 import com.example.echoloc.util.showToast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_map.view.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Signup : AppCompatActivity(),View.OnClickListener {
     lateinit var database:FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
     lateinit var preferance: Pref
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +41,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
         signup_btn.setOnClickListener(this)
         database=FirebaseDatabase.getInstance()
         databaseReference=database.getReference("Echoloc").child("Users")
+
     }
 
     override fun onClick(p0: View?) {
@@ -73,4 +90,5 @@ class Signup : AppCompatActivity(),View.OnClickListener {
 
         }
     }
+
 }

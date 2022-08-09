@@ -5,89 +5,41 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.example.echoloc.database.Pref
 import com.example.echoloc.locationapi.LocationManager
 import com.example.echoloc.locationapi.service.LocationService
 import com.example.echoloc.permission.PermissionManager
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapsInitializer
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import kotlinx.android.synthetic.main.activity_map.*
 
-class Test : AppCompatActivity() {
-
-    lateinit var textViewState: TextView
-    lateinit var textViewLocation: TextView
-
-    lateinit var room_name: String
-    lateinit var pref: Pref
+class Test : AppCompatActivity(), OnMapReadyCallback {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-        pref = Pref(applicationContext)
 
-        textViewLocation = findViewById(R.id.textViewLocation)
-        textViewState = findViewById(R.id.textViewState)
 
-        findViewById<Button>(R.id.buttonStart).setOnClickListener{
-            // check permission here
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                PermissionManager.requestPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-                {
-                    requestLocation()
-                }
-            } else {
-                PermissionManager.requestPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)
-                {
-                    requestLocation()
-                }
-            }
+        try {
+            MapsInitializer.initialize(this)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
-        textViewState.text = "is location service running ? ${LocationService.isLocationServiceRunning}"
-
-        if (LocationService.isLocationServiceRunning) {
-            requestLocation()
-        }
-
-        findViewById<Button>(R.id.buttonStop).setOnClickListener{
-            LocationManager.stop(this)
-        }
-
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmap) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
-    private fun requestLocation() {
-        room_name = pref.getData("roomname")
-        LocationManager.Builder.create(this).request(true, room_name) { latitude, longitude ->
+    override fun onMapReady(googleMap: GoogleMap) {
+        Log.i("MyLocTest", "지도 준비됨")
+//        map = googleMap
 
-            val locationString = "$latitude\t$longitude"
-
-            println(latitude)
-            println(longitude)
-            textViewLocation.text = locationString
-
-        }
     }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        PermissionManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        PermissionManager.onActivityResult(resultCode, resultCode)
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
 
 }

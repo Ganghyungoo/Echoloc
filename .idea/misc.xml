@@ -50,14 +50,16 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_create_room.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_login.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_map.xml" value="0.287962962962963" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_map.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_maps.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_menu.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_private_group_chatting.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_public_group_chatting.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_signup.xml" value="0.287962962962963" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_test.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_private_rooms.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_public_rooms.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/map_profile_cardview.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_message.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_other.xml" value="0.36614583333333334" />

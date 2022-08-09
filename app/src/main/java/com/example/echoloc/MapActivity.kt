@@ -3,10 +3,12 @@ package com.example.echoloc
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.location.Location
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -22,6 +24,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_map.*
@@ -39,6 +43,9 @@ class MapActivity : AppCompatActivity(),
     lateinit var databaseReference: DatabaseReference
     lateinit var pref: Pref
 
+    lateinit var list: ArrayList<LocationModel>
+    lateinit var mList: ArrayList<Marker>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
@@ -54,6 +61,8 @@ class MapActivity : AppCompatActivity(),
 
         group_id = intent.extras!!.getString("group_id", "")
         pref = Pref(applicationContext)
+        list = ArrayList()
+        mList = ArrayList<Marker>()
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -81,6 +90,8 @@ class MapActivity : AppCompatActivity(),
                     requestLocation()
                 }
             }
+
+            getMarkers()
         }
 
         findViewById<Button>(R.id.btn_stop).setOnClickListener{
@@ -99,12 +110,26 @@ class MapActivity : AppCompatActivity(),
     private fun requestLocation() {
         LocationManager.Builder.create(this).request(true) { latitude, longitude ->
 
-//            val locationString = "$latitude\t$longitude"
+            var locationModel = LocationModel(pref.getData("id"), pref.getData("name"), pref.getData("call"), latitude, longitude)
+            var reference = databaseReference.child(group_id)
+            reference.child(pref.getData("id")).setValue(locationModel).addOnCompleteListener{
 
-            var locationModel = LocationModel(pref.getData("id"), pref.getData("name"), latitude, longitude)
-            databaseReference.child(group_id).child(pref.getData("id")).setValue(locationModel).addOnCompleteListener{
+                // 데이터 전송 성공 시 마커 생성/업데이트
 
+//                myMarker = mMap.addMarker(MarkerOptions()
+//                    .position(myLatLng)
+//                    .title(pref.getData("name"))
+//                    .snippet(pref.getData("call")))!!
+//
+//                if (myMarker != null) {
+//                    myMarker.remove()
+//                    myMarker = mMap.addMarker(MarkerOptions()
+//                        .position(myLatLng)
+//                        .title(pref.getData("name"))
+//                        .snippet(pref.getData("call")))!!
+//                }
             }
+
         }
     }
 
@@ -125,10 +150,23 @@ class MapActivity : AppCompatActivity(),
         }
 
         mMap.isMyLocationEnabled = true
-        mMap.setOnMyLocationButtonClickListener(this)
+//        mMap.setOnMyLocationButtonClickListener(this)
 
+        mMap!!.setOnMarkerClickListener(object : GoogleMap.OnMarkerClickListener {
+            override fun onMarkerClick(marker: Marker): Boolean {
+                card_view.visibility = View.VISIBLE
+                tv_user_name.text = marker.title
+                tv_user_tellNum.text = marker.snippet
 
+                return false
+            }
+        })
 
+        mMap!!.setOnMapClickListener(object : GoogleMap.OnMapClickListener {
+            override fun onMapClick(p0: LatLng) {
+                card_view.visibility = View.GONE
+            }
+        })
 
     }
 
@@ -146,7 +184,6 @@ class MapActivity : AppCompatActivity(),
         task.addOnSuccessListener {
             if (it != null) {
                 val mylocation = LatLng(it.latitude, it.longitude)
-//                mMap.addMarker(MarkerOptions().position(mylocation).title("Marker in mylocation"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 17F))
             }
         }
@@ -200,6 +237,7 @@ class MapActivity : AppCompatActivity(),
             {
                 // 설정 창 만들면 추가
             }
+
         }
     }
 
@@ -207,5 +245,28 @@ class MapActivity : AppCompatActivity(),
         Toast.makeText(this, "내 위치로 이동", Toast.LENGTH_SHORT)
             .show()
         return false
+    }
+
+    private fun getMarkers() {
+        databaseReference.child(group_id).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                list.clear()
+                mMap.clear()
+                for (data in snapshot.children) {
+                    val locationModel = data.getValue(LocationModel::class.java)
+                    list.add(locationModel!!)
+                }
+                for (i in 0 until list.size) {
+                         mMap.addMarker(MarkerOptions().position(LatLng(list[i].latitude, list[i].longitude)).title(list[i].user_name))
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 }
