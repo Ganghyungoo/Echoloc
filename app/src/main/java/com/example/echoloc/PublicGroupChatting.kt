@@ -100,7 +100,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                 }
             }
             button -> {
-                val intent = Intent(applicationContext, MapActivity::class.java)
+                val intent = Intent(applicationContext, NMapsActivity::class.java)
                 intent.putExtra("group_id", group_id)
                 startActivity(intent)
             }

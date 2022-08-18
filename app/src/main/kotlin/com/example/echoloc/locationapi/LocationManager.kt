@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationRequest
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
