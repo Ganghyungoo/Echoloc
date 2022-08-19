@@ -9,10 +9,10 @@ import com.example.echoloc.model.MessageModel
 import kotlinx.android.synthetic.main.rv_message.view.*
 import kotlinx.android.synthetic.main.rv_other.view.*
 
-class PrivateChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
+
+class PrivateChattingAdapter(list: ArrayList<MessageModel>, var user_id: String):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var list: ArrayList<MessageModel> = list
-    var user_id: String = user_id
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view: View
@@ -24,11 +24,10 @@ class PrivateChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
         if(viewType==2)
         {
             return MessageViewModel(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.acceptreject_layout, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.acceptreject_layout, parent, false)
             )
         }
-            return GroupJoinedModel(
+        return GroupJoinedModel(
             LayoutInflater.from(parent.context).inflate(R.layout.rv_other, parent, false)
         )
     }

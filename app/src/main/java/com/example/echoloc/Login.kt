@@ -1,9 +1,9 @@
 package com.example.echoloc
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.Usermodel
 import com.example.echoloc.util.showToast

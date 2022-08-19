@@ -18,7 +18,7 @@ class PrivateRooms : Fragment(),PrivateAdapter.onClick {
 
     lateinit var adapter: PrivateAdapter
 
-    lateinit var  databaseReference1: DatabaseReference
+    lateinit var databaseReference1: DatabaseReference
 
     lateinit var list:ArrayList<RoomModel>
     lateinit var recyclerView: RecyclerView
@@ -33,7 +33,7 @@ class PrivateRooms : Fragment(),PrivateAdapter.onClick {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_private_rooms, container, false)
+       var view =inflater.inflate(R.layout.fragment_private_rooms, container, false)
         database=FirebaseDatabase.getInstance()
         pref = Pref(requireContext())
 
@@ -75,8 +75,7 @@ class PrivateRooms : Fragment(),PrivateAdapter.onClick {
     override fun onGroupJoined(roomModel: RoomModel) {
 
     var userModel=
-        Usermodel(pref.getData("id"), pref.getData("name"), pref.getData("email"), "", pref.getData("call"))
-
+        Usermodel(pref.getData("id"), pref.getData("name"), pref.getData("email"), "", pref.getData("call"),pref.getData("profileImageUrl"))
 
         databaseReference1.child(roomModel.group_id).child("requests").child(pref.getData("id"))
             .setValue(userModel)

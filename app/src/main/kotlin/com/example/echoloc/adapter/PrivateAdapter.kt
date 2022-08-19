@@ -11,13 +11,12 @@ import com.example.echoloc.R
 import com.example.echoloc.model.RoomModel
 import kotlinx.android.synthetic.main.rv_layout.view.*
 
+
 class PrivateAdapter(
     var context: Context,
-    var list: ArrayList<RoomModel>,
+    private var list: ArrayList<RoomModel>,
     var user_id: String,
-    var ongroupJoin: onClick
-) :
-    RecyclerView.Adapter<PrivateAdapter.ViewHolder>(){
+    var ongroupJoin: onClick) :RecyclerView.Adapter<PrivateAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var joinroom = itemView.joinroom
@@ -25,8 +24,7 @@ class PrivateAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.rv_layout, parent, false)
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.rv_layout, parent, false)
         )
     }
 
@@ -35,6 +33,7 @@ class PrivateAdapter(
 
         if (list[position].isgroupjoined) {
             holder.joinroom.visibility = View.GONE
+
         } else {
             holder.joinroom.visibility = View.VISIBLE
             holder.joinroom.text="방 참여하기"
@@ -55,7 +54,7 @@ class PrivateAdapter(
     override fun getItemCount(): Int {
         return list.size
     }
-    public interface onClick {
+    interface onClick {
         fun onGroupJoined(roomModel: RoomModel)
     }
 }

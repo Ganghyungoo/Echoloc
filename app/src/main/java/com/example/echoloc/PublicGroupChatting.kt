@@ -1,10 +1,9 @@
 package com.example.echoloc
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.echoloc.adapter.PublicChattingAdapter
 import com.example.echoloc.database.Pref
@@ -18,6 +17,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
 
     lateinit var database: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
+
     var group_id = ""
     lateinit var pref: Pref
     lateinit var adapter: PublicChattingAdapter
@@ -29,18 +29,16 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
         btn_back.setOnClickListener(this)
         btn_messagesend.setOnClickListener(this)
         button.setOnClickListener(this)
+        btn_member.setOnClickListener(this)
         database = FirebaseDatabase.getInstance()
         pref = Pref(applicationContext)
         databaseReference = database.getReference("Echoloc").child("chattings")
         group_id = intent.extras!!.getString("group_id", "")
-
         list = ArrayList()
-        adapter = PublicChattingAdapter(list, pref.getData("id"))
-
-
-
         var manager = LinearLayoutManager(applicationContext)
         manager.stackFromEnd = true
+        recyclerview.layoutManager=manager
+        adapter = PublicChattingAdapter(list, pref.getData("id"))
         recyclerview.adapter = adapter
         print(adapter)
 
@@ -72,6 +70,12 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
         when (p0) {
             btn_back -> {
                 onBackPressed()
+            }
+            btn_member -> {
+                var intent=Intent(applicationContext, MemberList_activity::class.java)
+                intent.putExtra("group_id", group_id)
+                intent.putExtra("isfrom_public","1")
+                startActivity(intent)
             }
             btn_messagesend -> {
                 var message = et_message.text.toString().trim()

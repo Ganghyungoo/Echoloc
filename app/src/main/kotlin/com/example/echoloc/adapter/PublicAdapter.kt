@@ -24,7 +24,8 @@ class PublicAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.rv_layout, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.rv_layout, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -53,7 +54,7 @@ class PublicAdapter(
         return list.size
     }
 
-    public interface onClick {
+    interface onClick {
         fun onGroupJoined(roomModel: RoomModel)
     }
 }

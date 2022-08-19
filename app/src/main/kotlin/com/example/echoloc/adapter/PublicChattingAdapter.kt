@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.R
 import com.example.echoloc.model.MessageModel
-import kotlinx.android.synthetic.main.activity_public_group_chatting.view.*
 import kotlinx.android.synthetic.main.rv_message.view.*
 import kotlinx.android.synthetic.main.rv_other.view.*
 
@@ -75,6 +74,4 @@ class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
             text_tittle.text = model.message
         }
     }
-
-
 }

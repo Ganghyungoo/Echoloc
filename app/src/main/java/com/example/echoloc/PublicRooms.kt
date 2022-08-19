@@ -1,10 +1,10 @@
 package com.example.echoloc
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.adapter.PublicAdapter
 import com.example.echoloc.database.Pref
@@ -14,7 +14,6 @@ import com.example.echoloc.model.Usermodel
 import com.example.echoloc.util.getDateTime
 import com.example.echoloc.util.showToast
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_public_rooms.*
 import kotlinx.android.synthetic.main.fragment_public_rooms.view.*
 
 
@@ -60,8 +59,8 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
 
 
                     for (snapshot in postsnapshot.child("members").children) {
-                        var member = snapshot.getValue(Usermodel::class.java)
-                        if (pref.getData("id") == member!!.id) {
+                        var members = snapshot.getValue(Usermodel::class.java)
+                        if (pref.getData("id") == members!!.id) {
                             isgroupjoined = true
                         }
                     }
@@ -85,7 +84,7 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
 
     override fun onGroupJoined(roomModel: RoomModel) {
         var usermodel = Usermodel(
-            pref.getData("id"), pref.getData("name"), pref.getData("email"), "", pref.getData("call"))
+            pref.getData("id"), pref.getData("name"), pref.getData("email"), "", pref.getData("call"),pref.getData("profileImageUrl"))
 
         var model = MessageModel(
             pref.getData("name")+"joined the group",
