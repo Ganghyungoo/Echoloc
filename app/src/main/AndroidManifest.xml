@@ -27,6 +27,8 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+        <activity android:name=".NMapsActivity"
+            android:exported="false" />
         <activity
             android:name=".MapActivity"
             android:exported="false" />
@@ -50,6 +52,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDUDWdkNbJdZTe-8iDoytrvRAiqGSEXvkc" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="cyp9xrblgx" />
 
         <activity
             android:name=".CreateRoom"

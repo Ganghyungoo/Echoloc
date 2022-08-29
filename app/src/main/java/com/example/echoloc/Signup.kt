@@ -103,13 +103,13 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                                     Log.d("이미지 URL", "$userProfile")
                                 }
                         }
-                    var model=Usermodel(id!!, name, email, pass, call, profile)
+                    var model=Usermodel(id!!, name, email, pass, call, imageUri.toString())
                     databaseReference.child(id!!).setValue(model).addOnCompleteListener {
                         preferance.saveData("name",name)
                         preferance.saveData("id",id)
                         preferance.saveData("email",email)
                         preferance.saveData("call",call)
-                        preferance.saveData("profile",profile)
+                        preferance.saveData("profile", profile) // profile
                         showToast(applicationContext, msg = "회원가입 완료!")
                         startActivity(Intent(applicationContext,MainActivity::class.java))
                         finish()

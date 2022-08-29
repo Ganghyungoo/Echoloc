@@ -1,6 +1,8 @@
 package com.example.echoloc.model
 
- class Usermodel() {
+import android.net.Uri
+
+class Usermodel() {
 
    lateinit var id:String
    lateinit var name:String
@@ -15,7 +17,7 @@ package com.example.echoloc.model
         email:String,
         pass:String,
         call:String,
-        profileImageUrl:String
+        profileImageUrl: String
         ) : this() {
         this.id=id
         this.email=email
