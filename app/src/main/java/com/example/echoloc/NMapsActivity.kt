@@ -70,7 +70,7 @@ class NMapsActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLi
         findViewById<Button>(R.id.btn_start).setOnClickListener {
             Toast.makeText(this, "위치 공유 시작", Toast.LENGTH_SHORT).show()
             btn_start.visibility = View.GONE
-            btn_stop.visibility = View.VISIBLE
+            btn_refresh.visibility = View.VISIBLE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 PermissionManager.requestPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -87,11 +87,26 @@ class NMapsActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLi
             }
         }
 
-        findViewById<Button>(R.id.btn_stop).setOnClickListener {
-            Toast.makeText(this, "위치 공유 종료", Toast.LENGTH_SHORT).show()
-            LocationManager.stop(this)
+        findViewById<Button>(R.id.btn_refresh).setOnClickListener {
+           // Toast.makeText(this, "위치 공유 종료", Toast.LENGTH_SHORT).show()
+           // LocationManager.stop(this)
             btn_start.visibility = View.VISIBLE
-            btn_stop.visibility = View.GONE
+            btn_refresh.visibility = View.GONE
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                PermissionManager.requestPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION) {
+                    requestLocation()
+                }
+            } else {
+                PermissionManager.requestPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION) {
+                    requestLocation()
+                }
+            }
         }
 
         findViewById<Button>(R.id.btn_menu).setOnClickListener {
@@ -228,7 +243,10 @@ class NMapsActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLi
 
             val api = retrofit.create(NaverAPI::class.java)
             //근처에서 길찾기
-            val distance = DistanceManager.getDistance(pref.getData("latitude").toDouble(), pref.getData("longitude").toDouble(), tag[2].toDouble(), tag[3].toDouble())
+            val distance = DistanceManager
+                .getDistance(pref.getData("latitude").toDouble(), pref.getData("longitude").toDouble()
+                    , tag[2].toDouble(), tag[3].toDouble()) // start to goal distance
+            val time = (distance / 1.23 / 60).toInt() // arrive time
             val callgetPath = api.getPath(APIKEY_ID, APIKEY, "${pref.getData("longitude")}, ${pref.getData("latitude")}", "${tag[3]}, ${tag[2]}", distance)
 
             callgetPath.enqueue(object : Callback<ResultPath>{
@@ -253,17 +271,19 @@ class NMapsActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLi
                     path.passedColor = Color.GRAY
                     path.map = naverMap
 
+                    // 길찾기 종료 시
+                    // path.map = null
+
                     //경로 시작점으로 화면 이동
                     if(path.coords != null) {
                         val cameraUpdate = CameraUpdate.scrollTo(path.coords[0]!!)
                             .animate(CameraAnimation.Fly, 3000)
                         naverMap!!.moveCamera(cameraUpdate)
-                        naverMap.locationTrackingMode = LocationTrackingMode.Follow
-
+                        naverMap.locationTrackingMode = LocationTrackingMode.Face
+                        tv.text = time.toString()
                         Toast.makeText(this@NMapsActivity, "경로 안내가 시작됩니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
-
                 override fun onFailure(call: Call<ResultPath>, t: Throwable) {
                     Toast.makeText(this@NMapsActivity, "경로 안내가 실패했습니다.", Toast.LENGTH_SHORT).show()
                 }
