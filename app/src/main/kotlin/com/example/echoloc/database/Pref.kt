@@ -2,6 +2,7 @@ package com.example.echoloc.database
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 
 class Pref {
     private  val PREFERANCE_NAME="my_preferance"
@@ -30,5 +31,9 @@ class Pref {
         var editor = preferences.edit()
         editor.clear()
         editor.commit()
+    }
+
+    fun saveData(key: String, value: Uri?) {
+        TODO("Not yet implemented")
     }
 }

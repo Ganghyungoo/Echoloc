@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_signup.*
 
+
 class Signup : AppCompatActivity(),View.OnClickListener {
     lateinit var database:FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
@@ -80,8 +81,8 @@ class Signup : AppCompatActivity(),View.OnClickListener {
         var pass=et_pass.text.toString().trim()
         var call=et_call.text.toString().trim()
         var con_pass=et_confirmpass.text.toString().trim()
-        var profile=registration_iv.toString().trim()
-        if(name.isEmpty() || email.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || call.isEmpty() ||profile.isEmpty())
+        var userProfile=registration_iv.imageAlpha.toString()
+        if(name.isEmpty() || email.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || call.isEmpty() ||userProfile.isEmpty())
         {
             showToast(applicationContext, msg = "모든 항목을 입력하세요!")
         }
@@ -92,8 +93,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                 if(!profileCheck){
                     showToast(applicationContext, msg = "프로필사진까지 올바르게 등록해주세요.")
                 }else {
-                    FirebaseStorage.getInstance()
-                        .reference.child("userImages").child("$id/photo").putFile(imageUri!!)
+                    FirebaseStorage.getInstance().reference.child("userImages").child("$id/photo").putFile(imageUri!!)
                         .addOnSuccessListener {
                             var userProfile: Uri? = null
                             FirebaseStorage.getInstance().reference.child("userImages")
@@ -101,19 +101,22 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                                 .addOnSuccessListener {
                                     userProfile = it
                                     Log.d("이미지 URL", "$userProfile")
+                                    var model=Usermodel(id!!, name, email, pass, call,
+                                        userProfile.toString()
+                                    )
+                                    databaseReference.child(id!!).setValue(model).addOnCompleteListener {
+                                        preferance.saveData("name",name)
+                                        preferance.saveData("id",id)
+                                        preferance.saveData("email",email)
+                                        preferance.saveData("call",call)
+                                        preferance.saveData("profile",userProfile)
+                                        showToast(applicationContext, msg = "회원가입 완료!")
+                                        startActivity(Intent(applicationContext,MainActivity::class.java))
+                                        finish()
+                                    }
                                 }
                         }
-                    var model=Usermodel(id!!, name, email, pass, call, imageUri.toString())
-                    databaseReference.child(id!!).setValue(model).addOnCompleteListener {
-                        preferance.saveData("name",name)
-                        preferance.saveData("id",id)
-                        preferance.saveData("email",email)
-                        preferance.saveData("call",call)
-                        preferance.saveData("profile", profile) // profile
-                        showToast(applicationContext, msg = "회원가입 완료!")
-                        startActivity(Intent(applicationContext,MainActivity::class.java))
-                        finish()
-                    }
+
                 }
             }else{
                 showToast(applicationContext, msg = "비밀번호를 확인하세요!")
