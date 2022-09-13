@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://echoloc-244de-default-rtdb.firebaseio.com</string>
+</resources>
