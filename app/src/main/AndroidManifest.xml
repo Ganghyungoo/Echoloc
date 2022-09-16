@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -22,22 +22,12 @@
         android:theme="@style/Theme.Echoloc"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
-        <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
-
-        <activity android:name=".NMapsActivity"
+        <activity
+            android:name=".TDirectionActivity"
             android:exported="false" />
         <activity
-            android:name=".MapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PrivateGroupChatting"
-            android:exported="false" />
-        <activity
-            android:name=".PublicGroupChatting"
-            android:exported="false" />
+            android:name=".TMapsActivity"
+            android:exported="true" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -51,12 +41,18 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDUDWdkNbJdZTe-8iDoytrvRAiqGSEXvkc" />
+            android:value="${MAPS_API_KEY}" />
 
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="cyp9xrblgx" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
+        <activity
+            android:name=".PrivateGroupChatting"
+            android:exported="false" />
+        <activity
+            android:name=".PublicGroupChatting"
+            android:exported="false" />
         <activity
             android:name=".CreateRoom"
             android:exported="true" />
@@ -77,13 +73,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-
-        <service android:name=".locationapi.service.LocationService"
+        <service
+            android:name=".locationapi.service.LocationService"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

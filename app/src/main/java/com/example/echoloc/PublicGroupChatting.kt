@@ -28,7 +28,6 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_public_group_chatting)
         btn_back.setOnClickListener(this)
         btn_messagesend.setOnClickListener(this)
-        button.setOnClickListener(this)
         btn_member.setOnClickListener(this)
         database = FirebaseDatabase.getInstance()
         pref = Pref(applicationContext)
@@ -102,11 +101,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                 } else {
                     showToast(applicationContext, "메세지를 입력해주세요!")
                 }
-            }
-            button -> {
-                val intent = Intent(applicationContext, NMapsActivity::class.java)
-                intent.putExtra("group_id", group_id)
-                startActivity(intent)
+
             }
         }
     }

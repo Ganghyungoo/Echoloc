@@ -42,18 +42,6 @@
             android:src="@drawable/ic_baseline_supervised_user_circle_24"
             app:tint="@color/white" />
 
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="51dp"
-            android:background="#00FFFFFF"
-            android:text="지도" />
-
     </RelativeLayout>
 
     <RelativeLayout

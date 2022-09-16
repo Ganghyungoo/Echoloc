@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.PublicGroupChatting
 import com.example.echoloc.R
+import com.example.echoloc.TMapsActivity
 import com.example.echoloc.model.RoomModel
 import kotlinx.android.synthetic.main.rv_layout.view.*
 
@@ -43,7 +44,7 @@ class PublicAdapter(
 
         holder.itemView.setOnClickListener {
              if (holder.joinroom.visibility == View.GONE) {
-                 var intent = Intent(context, PublicGroupChatting::class.java)
+                 var intent = Intent(context, TMapsActivity::class.java)
                  intent.putExtra("group_id", list[position].group_id)
                  context.startActivity(intent)
              }
