@@ -93,6 +93,7 @@ class Profilesetting : Fragment() {
                 email?.text = userProfile?.email
                 name?.text = userProfile?.name
             }
+
         })
         //프로필사진 바꾸기
         photo?.setOnClickListener{

@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.Usermodel
 import com.example.echoloc.util.showToast
@@ -26,6 +27,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
     lateinit var databaseReference: DatabaseReference
     lateinit var preferance: Pref
     private var imageUri : Uri? = null
+    private var imageUri2: Uri? = null//기본 이미지 변수 할당
     var profileCheck = false //추가
     //이미지 등록
     private val getContent =
@@ -39,6 +41,13 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                 Log.d("이미지", "실패")
             }
         }
+    var drawablePath: String = getURLForResource(R.drawable.person)
+
+    private fun getURLForResource(resId: Int): String {
+        return Uri.parse("android.resource://" + R::class.java.getPackage().name + "/" + resId).toString()
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,8 +99,32 @@ class Signup : AppCompatActivity(),View.OnClickListener {
             if(pass.equals(con_pass))
             {
                 var id=databaseReference.push().key
-                if(!profileCheck){
-                    showToast(applicationContext, msg = "프로필사진까지 올바르게 등록해주세요.")
+                if(!profileCheck){//사진 설정 안했을때
+                    imageUri2=drawablePath.toUri()
+                    FirebaseStorage.getInstance().reference.child("userImages").child("$id/photo").putFile(imageUri2!!)
+                        .addOnSuccessListener {
+                            var userProfile: Uri? = null
+                            FirebaseStorage.getInstance().reference.child("userImages")
+                                .child("$id/photo").downloadUrl
+                                .addOnSuccessListener {
+                                    userProfile = it
+                                    Log.d("이미지 URL", "$userProfile")
+                                    var model=Usermodel(id!!, name, email, pass, call,
+                                        userProfile.toString()
+                                    )
+                                    databaseReference.child(id!!).setValue(model).addOnCompleteListener {
+                                        preferance.saveData("name",name)
+                                        preferance.saveData("id",id)
+                                        preferance.saveData("email",email)
+                                        preferance.saveData("call",call)
+                                        preferance.saveData("profile",userProfile)
+                                        showToast(applicationContext, msg = "회원가입 완료!")
+                                        startActivity(Intent(applicationContext,MainActivity::class.java))
+                                        finish()
+                                    }
+                                }
+                        }
+
                 }else {
                     FirebaseStorage.getInstance().reference.child("userImages").child("$id/photo").putFile(imageUri!!)
                         .addOnSuccessListener {
@@ -109,7 +142,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                                         preferance.saveData("id",id)
                                         preferance.saveData("email",email)
                                         preferance.saveData("call",call)
-                                        preferance.saveData("profile",userProfile.toString())
+                                        preferance.saveData("profile",userProfile)
                                         showToast(applicationContext, msg = "회원가입 완료!")
                                         startActivity(Intent(applicationContext,MainActivity::class.java))
                                         finish()
