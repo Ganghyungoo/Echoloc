@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         pref=Pref(applicationContext)
-        btn_logout.setOnClickListener(this)
+        btn_setting.setOnClickListener(this)
         btn_createroom.setOnClickListener(this)
         var fragment= arrayListOf(
             PublicRooms(),
@@ -46,14 +46,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0)
         {
-            btn_logout ->
+            /*btn_logout ->
             {
                 pref.clearData()
                 startActivity(Intent(applicationContext, SplashScreen::class.java))
                 finish()
-            }
+            }*/
             btn_createroom -> {
                 startActivity(Intent(applicationContext,CreateRoom::class.java))
+            }
+
+            btn_setting -> {
+                intent = Intent(applicationContext, SettingsActivity::class.java)
+                startActivity(intent)
             }
         }
     }

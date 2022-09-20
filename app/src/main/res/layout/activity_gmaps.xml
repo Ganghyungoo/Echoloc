@@ -4,37 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TMapsActivity">
+    tools:context=".GMapsActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayoutTmap"
+    <fragment
+        android:id="@+id/gMap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_myLocation"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/gps" />
+        class="com.google.android.gms.maps.SupportMapFragment"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_menu"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/plus"
-        android:visibility="visible" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="visible"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel"

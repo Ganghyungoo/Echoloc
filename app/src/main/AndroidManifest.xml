@@ -23,6 +23,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".GDirectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GMapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".TDirectionActivity"
             android:exported="false" />
         <activity

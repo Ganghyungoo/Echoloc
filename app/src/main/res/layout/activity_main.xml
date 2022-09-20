@@ -23,13 +23,13 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/btn_setting"
             android:layout_width="25sp"
-            android:src="@drawable/ic_baseline_login_24"
-            android:id="@+id/btn_logout"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20sp"
-            android:layout_centerVertical="true"
             android:layout_height="25sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20sp"
+            android:src="@drawable/setting"
             app:tint="@color/white" />
 
         <ImageView
@@ -38,7 +38,7 @@
             android:layout_height="25sp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20sp"
-            android:layout_toLeftOf="@+id/btn_logout"
+            android:layout_toLeftOf="@+id/btn_setting"
             android:src="@drawable/add_chat"
             app:tint="@color/white" />
 
