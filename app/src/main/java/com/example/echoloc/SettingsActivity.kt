@@ -50,6 +50,8 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         when(p0) {
             btn_changeProfile -> {
                 // 프로필 입력하는 액티비티로 이동
+                val intent = Intent(applicationContext, ProfileChangeActivity::class.java)
+                startActivity(intent)
             }
 
             tv_logOut -> {

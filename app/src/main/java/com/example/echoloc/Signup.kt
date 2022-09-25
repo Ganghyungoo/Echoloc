@@ -34,7 +34,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if(result.resultCode == RESULT_OK) {
                 imageUri = result.data?.data //이미지 경로 원본
-                registration_iv.setImageURI(imageUri) //이미지 뷰를 바꿈
+                iv_profileImg.setImageURI(imageUri) //이미지 뷰를 바꿈
                 Log.d("이미지", "성공")
             }
             else{
@@ -56,8 +56,8 @@ class Signup : AppCompatActivity(),View.OnClickListener {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)//추가
         back_button.setOnClickListener(this)
         btn_gotologin.setOnClickListener(this)
-        signup_btn.setOnClickListener(this)
-        val profile = findViewById<ImageView>(R.id.registration_iv) //추가
+        btn_change.setOnClickListener(this)
+        val profile = findViewById<ImageView>(R.id.iv_profileImg) //추가
         database=FirebaseDatabase.getInstance()
         databaseReference=database.getReference("Echoloc").child("Users")
 
@@ -77,7 +77,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
             btn_gotologin->{
                 onBackPressed()
             }
-            signup_btn ->
+            btn_change ->
             {
                 getData()
             }
@@ -86,11 +86,11 @@ class Signup : AppCompatActivity(),View.OnClickListener {
     private fun getData()
     {
         var name=et_name.text.toString().trim()
-        var email=et_email.text.toString().trim()
+        var email=tv_email.text.toString().trim()
         var pass=et_pass.text.toString().trim()
         var call=et_call.text.toString().trim()
         var con_pass=et_confirmpass.text.toString().trim()
-        var userProfile=registration_iv.imageAlpha.toString()
+        var userProfile=iv_profileImg.imageAlpha.toString()
         if(name.isEmpty() || email.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || call.isEmpty() ||userProfile.isEmpty())
         {
             showToast(applicationContext, msg = "모든 항목을 입력하세요!")
@@ -142,7 +142,7 @@ class Signup : AppCompatActivity(),View.OnClickListener {
                                         preferance.saveData("id",id)
                                         preferance.saveData("email",email)
                                         preferance.saveData("call",call)
-                                        preferance.saveData("profile",userProfile)
+                                        preferance.saveData("profile",userProfile.toString())
                                         showToast(applicationContext, msg = "회원가입 완료!")
                                         startActivity(Intent(applicationContext,MainActivity::class.java))
                                         finish()

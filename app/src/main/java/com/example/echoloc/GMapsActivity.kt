@@ -204,16 +204,23 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
                 for (data in snapshot.children) {
                     val locationModel = data.getValue(LocationModel::class.java)
                     if (pref.getData("id") != locationModel!!.user_id) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            var bitmap = withContext(Dispatchers.IO) {
-                                BitmapFactory.decodeStream(URL(locationModel.profileImageUrl).openStream())
+                        var url = locationModel.profileImageUrl
+                        var bitmapURL: String? = null // 이전의 url이랑 비교해서 다르면 바꾸게하고 같으면 그대로 사용하게 변경하기 메모리 많이 잡아서 시간 지나면 팅기는거 같음 04
+                        if (url != bitmapURL) {
+                            bitmapURL = url
+                            CoroutineScope(Dispatchers.Main).launch {
+                                var bitmap = withContext(Dispatchers.IO) {
+                                    BitmapFactory.decodeStream(URL(bitmapURL).openStream())
+                                }
+                                bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
+                                mMap.addMarker(MarkerOptions()
+                                    .position(LatLng(locationModel.latitude, locationModel.longitude))
+                                    .title(locationModel.user_name)
+                                    .snippet(locationModel.profileImageUrl)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
                             }
-                            bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
-                            mMap.addMarker(MarkerOptions()
-                                .position(LatLng(locationModel.latitude, locationModel.longitude))
-                                .title(locationModel.user_name)
-                                .snippet(locationModel.profileImageUrl)
-                                .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
+                        } else {
+
                         }
                     }
                 }
