@@ -16,7 +16,6 @@ import com.example.echoloc.Directions.*
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.LocationModel
 import com.google.android.gms.location.*
-import com.google.android.gms.maps.model.Marker
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.skt.Tmap.TMapMarkerItem

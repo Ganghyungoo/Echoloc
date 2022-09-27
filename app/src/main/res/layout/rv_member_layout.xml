@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="40sp"
             android:layout_height="40sp"
-            android:src="@drawable/et_background" />
+            android:src="@drawable/person" />
 
         <RelativeLayout
             android:layout_width="match_parent"

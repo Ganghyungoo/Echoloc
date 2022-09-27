@@ -4,23 +4,36 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/et_background.xml" value="0.1" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.121" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.166" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_create_new_folder_24.xml" value="0.121" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_fingerprint_24.xml" value="0.152" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.121" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.121" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/acceptreject_layout.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_create_room.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_gmaps.xml" value="0.1171875" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_login.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_map.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_maps.xml" value="0.25" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_member_list.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_private_group_chatting.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_profile.xml" value="0.1171875" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_public_group_chatting.xml" value="0.264" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_room_pass.xml" value="0.264" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_settings.xml" value="0.1171875" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_signup.xml" value="0.1171875" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_splash_screen.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_tdirection.xml" value="0.1171875" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_tmaps.xml" value="0.1171875" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_private_rooms.xml" value="0.1" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_public_rooms.xml" value="0.25" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_test.xml" value="0.25" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/pass_popup.xml" value="0.264" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_layout.xml" value="0.264" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_member_layout.xml" value="0.1" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_message.xml" value="0.264" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_other.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.121" />

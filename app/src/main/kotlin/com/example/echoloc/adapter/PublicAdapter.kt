@@ -5,20 +5,21 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.GMapsActivity
-import com.example.echoloc.PublicGroupChatting
 import com.example.echoloc.R
-import com.example.echoloc.TMapsActivity
 import com.example.echoloc.model.RoomModel
+import com.example.echoloc.util.showToast
 import kotlinx.android.synthetic.main.rv_layout.view.*
 
 class PublicAdapter(
     var context: Context,
     var list: ArrayList<RoomModel>,
     var user_id: String,
-    var ongroupJoin: onClick
-                    ) :RecyclerView.Adapter<PublicAdapter.ViewHolder>(){
+    var ongroupJoin: PrivateAdapter.onClick
+) :RecyclerView.Adapter<PublicAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var joinroom = itemView.joinroom
@@ -38,17 +39,36 @@ class PublicAdapter(
         } else {
             holder.joinroom.visibility = View.VISIBLE
         }
+        fun showSettingPopup(){
+            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val view = inflater.inflate(R.layout.pass_popup, null)
+            val text: EditText = view.findViewById(R.id.room_et_pass)
+            val alertDialog= AlertDialog.Builder(context)
+                .setTitle("방 비밀번호").setPositiveButton("입장하기") { dialog, which->
+                    var pass = text.text.toString()
+                    if(list[position].roompass.toString()!=pass.toString()){
+                        showToast(context, msg = "비밀번호가 틀립니다")
+                    }
+                    else{
+                        ongroupJoin.onGroupJoined(list[position])
+                    }
+                }
+                .setNegativeButton("취소",null)
+                .create()
+            alertDialog.setView(view)
+            alertDialog.show()
+        }
 
         holder.joinroom.setOnClickListener {
-            ongroupJoin.onGroupJoined(list[position])
+            showSettingPopup()
         }
 
         holder.itemView.setOnClickListener {
-             if (holder.joinroom.visibility == View.GONE) {
-                 var intent = Intent(context, GMapsActivity::class.java)
-                 intent.putExtra("group_id", list[position].group_id)
-                 context.startActivity(intent)
-             }
+            if (holder.joinroom.visibility == View.GONE) {
+                var intent = Intent(context,GMapsActivity::class.java)
+                intent.putExtra("group_id", list[position].group_id)
+                context.startActivity(intent)
+            }
         }
     }
 

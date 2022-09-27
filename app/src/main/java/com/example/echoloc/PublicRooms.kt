@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.echoloc.adapter.PrivateAdapter
 import com.example.echoloc.adapter.PublicAdapter
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.MessageModel
@@ -17,7 +18,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_public_rooms.view.*
 
 
-class PublicRooms : Fragment(), PublicAdapter.onClick {
+class PublicRooms : Fragment(), PublicAdapter.onClick, PrivateAdapter.onClick {
 
     lateinit var adapter: PublicAdapter
     lateinit var list:ArrayList<RoomModel>
@@ -76,7 +77,7 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                 showToast(context!!, error.message)
+                showToast(context!!, error.message)
             }
 
         })
@@ -97,10 +98,10 @@ class PublicRooms : Fragment(), PublicAdapter.onClick {
         var key = databaseReference.push().key
         databaseReference.child(roomModel.group_id).child("members").child(key!!)
             .setValue(usermodel).addOnCompleteListener {
-            var key1 = databaseReference1.push().key
-            databaseReference1.child(key!!).child(key1!!).setValue(model)
-            showToast(requireContext(), "그룹 참여 성공!")
-        }
+                var key1 = databaseReference1.push().key
+                databaseReference1.child(key!!).child(key1!!).setValue(model)
+                showToast(requireContext(), "그룹 참여 성공!")
+            }
 
     }
 }

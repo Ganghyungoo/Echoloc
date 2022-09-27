@@ -1,9 +1,9 @@
 package com.example.echoloc
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.echoloc.adapter.ViewPagerAdapter
 import com.example.echoloc.database.Pref
 import com.google.android.material.tabs.TabLayout
@@ -19,8 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_setting.setOnClickListener(this)
         btn_createroom.setOnClickListener(this)
         var fragment= arrayListOf(
-            PublicRooms(),
-            PrivateRooms()
+            PublicRooms()
         )
         viewpager.adapter=ViewPagerAdapter(this,fragment)
 
@@ -32,10 +31,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     0 ->
                     {
                         tab.text="공개 방"
-                    }
-                    1->
-                    {
-                        tab.text="비공개 방"
                     }
                 }
             }
