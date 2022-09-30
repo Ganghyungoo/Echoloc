@@ -1,10 +1,10 @@
 package com.example.echoloc
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.echoloc.database.Pref
 
 class SplashScreen : AppCompatActivity() {
@@ -28,7 +28,7 @@ class SplashScreen : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }else{
-                var intent =Intent(applicationContext,MainActivity::class.java)
+                var intent =Intent(applicationContext,Login::class.java)
                 startActivity(intent)
                 finish()
                 }

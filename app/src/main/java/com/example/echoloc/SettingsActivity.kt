@@ -10,7 +10,6 @@ import com.example.echoloc.database.Pref
 import com.example.echoloc.model.Usermodel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_settings.*
-import java.util.*
 
 class SettingsActivity : AppCompatActivity(), View.OnClickListener {
 

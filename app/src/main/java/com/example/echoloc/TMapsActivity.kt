@@ -15,7 +15,6 @@ import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import androidx.core.app.ActivityCompat
-import com.example.echoloc.Directions.URLtoBitmapTask
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.LocationModel
 import com.example.echoloc.model.Usermodel
@@ -24,7 +23,6 @@ import com.google.firebase.database.*
 import com.skt.Tmap.TMapMarkerItem
 import com.skt.Tmap.TMapPoint
 import kotlinx.android.synthetic.main.activity_tmaps.*
-import kotlinx.coroutines.*
 import java.io.IOException
 import java.net.URL
 

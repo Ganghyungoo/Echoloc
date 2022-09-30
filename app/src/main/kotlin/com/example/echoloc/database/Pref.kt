@@ -24,7 +24,7 @@ class Pref {
     }
     public fun getData(key: String):String
     {
-        return preferences.getString(key,"")!!
+        return preferences.getString(key,toString())!!
     }
 
     public fun clearData(){

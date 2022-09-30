@@ -21,6 +21,7 @@
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_member_list.xml" value="0.19519927536231885" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_private_group_chatting.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_profile.xml" value="0.1171875" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_profile_change.xml" value="0.11594202898550725" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_public_group_chatting.xml" value="0.264" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_room_pass.xml" value="0.264" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_settings.xml" value="0.1171875" />
@@ -29,6 +30,7 @@
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_tdirection.xml" value="0.1171875" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_tmaps.xml" value="0.1171875" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_private_rooms.xml" value="0.1" />
+        <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_profile_setting.xml" value="0.1" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_public_rooms.xml" value="0.25" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_test.xml" value="0.25" />
         <entry key="..\:/Users/hyungoo/AndroidStudioProjects/Echo/app/src/main/res/layout/pass_popup.xml" value="0.264" />
@@ -80,7 +82,6 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_nmaps.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_private_group_chatting.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_profile.xml" value="0.33" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_profile_change.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_public_group_chatting.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_settings.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_signup.xml" value="0.33" />

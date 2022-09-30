@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:hint="빙 비밀번호 설정" />
+        android:hint="방 비밀번호 설정" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_createroom"
