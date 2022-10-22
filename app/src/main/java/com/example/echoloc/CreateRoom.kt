@@ -65,7 +65,7 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
             var key1 = databaseReference1.push().key
             databaseReference1.child(key!!).child(key1!!).setValue(model)
 
-            var roomModel=RoomModel(key!!,roomname,roompass,usermodel.name,usermodel.id,usermodel.call)
+            var roomModel=RoomModel(key!!,roomname,roompass,usermodel.name,usermodel.id,usermodel.call,usermodel.profileImageUrl)
             databaseReference.child(key).setValue(roomModel).addOnCompleteListener {
                 showToast(applicationContext,"그룹 방 생성 완료")
                 finish()

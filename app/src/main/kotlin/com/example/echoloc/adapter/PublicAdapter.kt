@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.echoloc.GMapsActivity
 import com.example.echoloc.R
+import com.example.echoloc.RoomChangeActivity
 import com.example.echoloc.model.RoomModel
 import com.example.echoloc.util.showToast
 import kotlinx.android.synthetic.main.rv_layout.view.*
@@ -24,6 +25,7 @@ class PublicAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var joinroom = itemView.joinroom
         var txt_roomname = itemView.txt_roomname
+        var roomset=itemView.roomset
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +40,11 @@ class PublicAdapter(
             holder.joinroom.visibility = View.GONE
         } else {
             holder.joinroom.visibility = View.VISIBLE
+        }
+        if(list[position].admin_id==user_id){
+            holder.roomset.visibility=View.VISIBLE
+        }else{
+            holder.roomset.visibility=View.GONE
         }
         fun showSettingPopup(){
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -69,6 +76,11 @@ class PublicAdapter(
                 intent.putExtra("group_id", list[position].group_id)
                 context.startActivity(intent)
             }
+        }
+        holder.roomset.setOnClickListener {
+                var intent = Intent(context, RoomChangeActivity::class.java)
+                intent.putExtra("group_id", list[position].group_id)
+                context.startActivity(intent)
         }
     }
 

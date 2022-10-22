@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 {
                     0 ->
                     {
-                        tab.text="공개 방"
+                        tab.text="방 리스트"
                     }
                 }
             }

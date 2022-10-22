@@ -8,6 +8,7 @@ class RoomModel() {
     lateinit var admin_name:String
     lateinit var admin_id:String
     lateinit var admin_call:String
+    lateinit var admin_profileImageUrl:String
     var isgroupjoined = false
 
     constructor(
@@ -16,7 +17,8 @@ class RoomModel() {
         roompass: String,
         admin_name: String,
         admin_id: String,
-        admin_call: String
+        admin_call: String,
+        admin_profileImageUrl:String
 
     ) : this() {
         this.admin_id = admin_id
@@ -25,6 +27,7 @@ class RoomModel() {
         this.admin_call = admin_call
         this.group_id = group_id
         this.roomname = roomname
+        this.admin_profileImageUrl=admin_profileImageUrl
     }
 
     public fun isGroupjoined(isAdmin: Boolean) {

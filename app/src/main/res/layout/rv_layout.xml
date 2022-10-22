@@ -24,12 +24,13 @@
 
             <TextView
                 android:id="@+id/txt_roomname"
-                android:layout_width="match_parent"
+                android:layout_width="133dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10sp"
                 android:layout_marginTop="10sp"
                 android:layout_marginEnd="10sp"
+                android:layout_marginRight="101dp"
                 android:layout_marginBottom="10sp"
                 android:layout_toLeftOf="@id/joinroom"
                 android:text="Room Name"
@@ -43,6 +44,20 @@
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/rouded_button"
                 android:text="방 참여"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/roomset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="@+id/joinroom"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="95dp"
+                android:background="@drawable/rouded_button2"
+                android:text="방 설정"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"
