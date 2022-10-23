@@ -55,6 +55,9 @@ dependencies {
     // tMap
     implementation files('libs\\com.skt.Tmap_1.73.jar')
 
+    // drawerLayout
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.android.volley:volley:1.2.1'
     implementation 'com.makeramen:roundedimageview:2.3.0'

@@ -22,6 +22,7 @@
         android:theme="@style/Theme.Echoloc"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".RoomChangeActivity"
             android:exported="false" />
@@ -37,12 +38,6 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
-        <activity
-            android:name=".TDirectionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TMapsActivity"
-            android:exported="true" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -71,9 +66,6 @@
         <activity
             android:name=".CreateRoom"
             android:exported="true" />
-        <activity
-            android:name=".MemberList_activity"
-            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
