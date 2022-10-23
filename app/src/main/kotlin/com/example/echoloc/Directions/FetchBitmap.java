@@ -3,9 +3,7 @@ package com.example.echoloc.Directions;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 
-import com.example.echoloc.TMapsActivity;
 import com.skt.Tmap.TMapPoint;
 import com.skt.Tmap.TMapView;
 
