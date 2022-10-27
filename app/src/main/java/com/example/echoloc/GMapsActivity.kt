@@ -34,12 +34,13 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_tmaps.*
+import kotlinx.android.synthetic.main.activity_gmaps.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
+import java.net.URLConnection
 
 class GMapsActivity : AppCompatActivity(), View.OnClickListener
     , OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -54,7 +55,8 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
     lateinit var group_id: String
     lateinit var myLatLng: LatLng
 
-    lateinit var markers: ArrayList<Marker>
+    lateinit var markers: ArrayList<MarkerOptions>
+    lateinit var bitmaps: ArrayList<Bitmap>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +80,7 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         markers = ArrayList()
+        bitmaps = ArrayList()
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.gMap) as SupportMapFragment
@@ -200,34 +203,64 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
         databaseReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 mMap.clear()
-
+                var i : Int = 0
                 for (data in snapshot.children) {
                     val locationModel = data.getValue(LocationModel::class.java)
-                    if (markers.isEmpty()) {
-                        if (pref.getData("id") != locationModel!!.user_id) {
-                            var url = locationModel.profileImageUrl
-                            var bitmapURL: String? = null // 이전의 url이랑 비교해서 다르면 바꾸게하고 같으면 그대로 사용하게 변경하기 메모리 많이 잡아서 시간 지나면 팅기는거 같음 04
-                            if (url != bitmapURL) {
-                                bitmapURL = url
-                                CoroutineScope(Dispatchers.Main).launch {
-                                    var bitmap = withContext(Dispatchers.IO) {
-                                        BitmapFactory.decodeStream(URL(bitmapURL).openStream())
-                                    }
-                                    bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
-                                    mMap.addMarker(MarkerOptions()
-                                        .position(LatLng(locationModel.latitude, locationModel.longitude))
-                                        .title(locationModel.user_name)
-                                        .snippet(locationModel.profileImageUrl)
-                                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
+//                        var url = locationModel.profileImageUrl
+//                        var bitmapURL: String? = null // 이전의 url이랑 비교해서 다르면 바꾸게하고 같으면 그대로 사용하게 변경하기 메모리 많이 잡아서 시간 지나면 팅기는거 같음 04
+//                        if (url != bitmapURL) {
+//                            bitmapURL = url
+//                            CoroutineScope(Dispatchers.Main).launch {
+//                                var bitmap = withContext(Dispatchers.IO) {
+//                                    BitmapFactory.decodeStream(URL(bitmapURL).openStream())
+//                                }
+//                                bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
+//                                mMap.addMarker(MarkerOptions()
+//                                    .position(LatLng(locationModel.latitude, locationModel.longitude))
+//                                    .title(locationModel.user_name)
+//                                    .snippet(locationModel.profileImageUrl))
+////                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
+//                            }
+//                        } else {
+//
+//                        }
+
+                    // 사용자(나)는 마커 표시 x
+                    if (pref.getData("id") != locationModel!!.user_id) {
+
+                        // 첫 접속 그룹원의 마커 추가
+                        if (markers.isEmpty() || i > markers.size-1) {
+                            val bitmapUrl = locationModel!!.profileImageUrl
+                            CoroutineScope(Dispatchers.Main).launch {
+                                var bitmap = withContext(Dispatchers.IO) {
+                                    BitmapFactory.decodeStream(URL (bitmapUrl).openStream())
                                 }
-                            } else {
+                                bitmap  = Bitmap.createScaledBitmap(bitmap, 80, 80, false)
+                                var markerOption = MarkerOptions().position(LatLng(locationModel.latitude, locationModel.longitude))
+                                    .title(locationModel.user_name)
+                                    .snippet(locationModel.profileImageUrl)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
 
+                                markers.add(markerOption)
+                                bitmaps.add(bitmap)
                             }
+                        } else {
+                            markers.get(i).position(LatLng(locationModel!!.latitude, locationModel.longitude))
+                                .title(locationModel.user_name)
+                                .snippet(locationModel.profileImageUrl)
+                                .icon(BitmapDescriptorFactory.fromBitmap(bitmaps.get(i)))
                         }
-                    }
 
+                        i++
+                    }
                 }
-            }
+
+                for (j in 0 until markers.size) {
+
+                    mMap.addMarker(markers.get(j))
+                }
+        }
+
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -274,6 +307,7 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
             btn_setting -> {
                 intent = Intent(applicationContext, SettingsActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

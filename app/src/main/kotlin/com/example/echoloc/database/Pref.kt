@@ -34,7 +34,7 @@ class Pref {
     }
 
     fun saveData(key: String, value: Uri?) {
-        TODO("Not yet implemented")
+
     }
 
 }

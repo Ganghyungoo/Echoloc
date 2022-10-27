@@ -21,7 +21,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_tdirection.*
+import kotlinx.android.synthetic.main.activity_gdirection.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -90,6 +90,7 @@ class GDirectionActivity : AppCompatActivity(), View.OnClickListener
             var bitmap = withContext(Dispatchers.IO) {
                 BitmapFactory.decodeStream(URL(profile).openStream())
             }
+            bitmap = Bitmap.createScaledBitmap(bitmap, 80, 80, false)
             mMap.addMarker(MarkerOptions().position(LatLng(eLat.toDouble(), eLon.toDouble()))
                 .title(eName)
                 .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))

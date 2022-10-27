@@ -56,7 +56,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
             tv_logOut -> {
                 // 로그아웃
                 pref.clearData()
-                startActivity(Intent(applicationContext, SplashScreen::class.java))
+                startActivity(Intent(applicationContext, Login::class.java))
                 finish()
             }
 

@@ -107,6 +107,10 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/rv_member_layout" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
