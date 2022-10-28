@@ -126,7 +126,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
 
     // 그룹원 리스트 표시
     private fun getMemberList() {
-        memberAdapter = MemberAdapter(this)
+        memberAdapter = MemberAdapter(this, group_id)
         member_adapter.adapter = memberAdapter
 
         database.getReference("Echoloc").child("Users")

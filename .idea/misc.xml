@@ -40,16 +40,30 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/chat_bubble.xml" value="0.3405" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/et_background.xml" value="0.356" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/home.xml" value="0.356" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_account_box_24.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.3405" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_add_to_photos_24.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.356" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_create_new_folder_24.xml" value="0.3405" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_fingerprint_24.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_gps_fixed_24.xml" value="0.3185" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_location_searching_24.xml" value="0.3185" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.356" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_person_search_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_play_circle_filled_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.356" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_stop_circle_24.xml" value="0.1155" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_baseline_supervised_user_circle_24.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/ic_launcher_background.xml" value="0.356" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/remove.xml" value="0.356" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/rouded_button.xml" value="0.192" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/rouded_button2.xml" value="0.1155" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/drawable/round_corner.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/acceptreject_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_change.xml" value="0.5" />
@@ -76,11 +90,12 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_test.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_tmap.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/activity_tmaps.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/drawerview_member_list.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/drawerview_member_list.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_private_rooms.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_profile_setting.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/fragment_public_rooms.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/map_profile_cardview.xml" value="0.2" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/pass_popup.xml" value="0.12962962962962962" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/rounded_button.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Echo/app/src/main/res/layout/rv_member_layout.xml" value="0.36614583333333334" />

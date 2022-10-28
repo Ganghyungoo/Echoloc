@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
@@ -28,13 +27,13 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_gmaps.*
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,6 +56,8 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
 
     lateinit var markers: ArrayList<MarkerOptions>
     lateinit var bitmaps: ArrayList<Bitmap>
+
+    var flag = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +82,8 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
 
         markers = ArrayList()
         bitmaps = ArrayList()
+
+        markers = ArrayList()
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.gMap) as SupportMapFragment
@@ -154,6 +157,8 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
                                 pref.getData("call"), location.latitude, location.longitude, userModel!!.profileImageUrl)
                             if (pref.getData("id") != null) {
                                 databaseReference.child(pref.getData("id")).setValue(locationModel).addOnSuccessListener {
+                                    pref.saveData("latitude", location.latitude.toString())
+                                    pref.saveData("longitude", location.longitude.toString())
                                     myLatLng = LatLng(location.latitude, location.longitude)
                                     getMarker()
                                 }
@@ -206,59 +211,47 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
                 var i : Int = 0
                 for (data in snapshot.children) {
                     val locationModel = data.getValue(LocationModel::class.java)
-//                        var url = locationModel.profileImageUrl
-//                        var bitmapURL: String? = null // 이전의 url이랑 비교해서 다르면 바꾸게하고 같으면 그대로 사용하게 변경하기 메모리 많이 잡아서 시간 지나면 팅기는거 같음 04
-//                        if (url != bitmapURL) {
-//                            bitmapURL = url
-//                            CoroutineScope(Dispatchers.Main).launch {
-//                                var bitmap = withContext(Dispatchers.IO) {
-//                                    BitmapFactory.decodeStream(URL(bitmapURL).openStream())
-//                                }
-//                                bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
-//                                mMap.addMarker(MarkerOptions()
-//                                    .position(LatLng(locationModel.latitude, locationModel.longitude))
-//                                    .title(locationModel.user_name)
-//                                    .snippet(locationModel.profileImageUrl))
-////                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
-//                            }
-//                        } else {
-//
-//                        }
 
                     // 사용자(나)는 마커 표시 x
                     if (pref.getData("id") != locationModel!!.user_id) {
 
-                        // 첫 접속 그룹원의 마커 추가
-                        if (markers.isEmpty() || i > markers.size-1) {
-                            val bitmapUrl = locationModel!!.profileImageUrl
-                            CoroutineScope(Dispatchers.Main).launch {
-                                var bitmap = withContext(Dispatchers.IO) {
-                                    BitmapFactory.decodeStream(URL (bitmapUrl).openStream())
-                                }
-                                bitmap  = Bitmap.createScaledBitmap(bitmap, 80, 80, false)
-                                var markerOption = MarkerOptions().position(LatLng(locationModel.latitude, locationModel.longitude))
-                                    .title(locationModel.user_name)
-                                    .snippet(locationModel.profileImageUrl)
-                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+                        mMap.addMarker(MarkerOptions().position(LatLng(locationModel.latitude, locationModel.longitude))
+                            .title(locationModel.user_name + "," + locationModel.user_call)
+                            .snippet(locationModel.profileImageUrl))
 
-                                markers.add(markerOption)
-                                bitmaps.add(bitmap)
-                            }
-                        } else {
-                            markers.get(i).position(LatLng(locationModel!!.latitude, locationModel.longitude))
-                                .title(locationModel.user_name)
-                                .snippet(locationModel.profileImageUrl)
-                                .icon(BitmapDescriptorFactory.fromBitmap(bitmaps.get(i)))
-                        }
-
-                        i++
+//                        // 첫 접속 그룹원의 마커 추가
+//                        if (markers.isEmpty() || i > markers.size-1) {
+//                            val bitmapUrl = locationModel!!.profileImageUrl
+//                            CoroutineScope(Dispatchers.Main).launch {
+//                                var bitmap = withContext(Dispatchers.IO) {
+//                                    BitmapFactory.decodeStream(URL (bitmapUrl).openStream())
+//                                }
+//
+//                                bitmap  = Bitmap.createScaledBitmap(bitmap, 80, 80, false)
+//                                var markerOption = MarkerOptions().position(LatLng(locationModel.latitude, locationModel.longitude))
+//                                    .title(locationModel.user_name + "," + locationModel.user_call)
+//                                    .snippet(locationModel.profileImageUrl)
+//                                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+//
+//                                markers.add(markerOption)
+//                            }
+//                        } else {
+//
+//                            if (markers[i].title!!.split(",")[0] == locationModel.user_name) {
+//                                markers[i].position(LatLng(locationModel!!.latitude, locationModel.longitude))
+//                                    .title(locationModel.user_name + "," + locationModel.user_call)
+//                                    .snippet(locationModel.profileImageUrl)
+//                            }
+//                        }
+//
+//                        i++
                     }
-                }
 
-                for (j in 0 until markers.size) {
-
-                    mMap.addMarker(markers.get(j))
                 }
+//
+//                for (j in 0 until markers.size) {
+//                    mMap.addMarker(markers.get(j))
+//                }
         }
 
 
@@ -323,22 +316,25 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
 
         val mUserProfileImg = mDialogView.findViewById<ImageView>(R.id.iv_profileImg)
         Glide.with(this).load(marker.snippet).into(mUserProfileImg)
+        mUserProfileImg.clipToOutline = true
+
+        val tag = marker.title!!.split(",")
 
         val mUserName = mDialogView.findViewById<TextView>(R.id.tv_userName)
-        mUserName.text = marker.title!!.trim()
+        mUserName.text = tag.get(0).trim()
 
-        //val mUserTellNum = mDialogView.findViewById<TextView>(R.id.tv_userTellNum)
-        //mUserTellNum.text = marker.snippet!!.trim()
+        val mUserCall = mDialogView.findViewById<TextView>(R.id.tv_userCall)
+        mUserCall.text = tag.get(1)
 
         val mNavigation = mDialogView.findViewById<Button>(R.id.btn_navigation)
         mNavigation.setOnClickListener {
             val intent = Intent(applicationContext, GDirectionActivity::class.java)
-            intent.putExtra("sName", pref.getData("name"))
-            intent.putExtra("eName", marker.title)
-            intent.putExtra("sLat", myLatLng.latitude)
-            intent.putExtra("sLon", myLatLng.longitude)
-            intent.putExtra("eLat", marker.position.latitude)
-            intent.putExtra("eLon", marker.position.longitude)
+            intent.putExtra("sName", pref.getData("name").toString())
+            intent.putExtra("eName", tag.get(0).trim().toString())
+            intent.putExtra("sLat", myLatLng.latitude.toDouble())
+            intent.putExtra("sLon", myLatLng.longitude.toDouble())
+            intent.putExtra("eLat", marker.position.latitude.toDouble())
+            intent.putExtra("eLon", marker.position.longitude.toDouble())
             intent.putExtra("group_id", group_id)
             intent.putExtra("profile", marker.snippet)
             startActivity(intent)

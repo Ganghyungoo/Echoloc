@@ -48,10 +48,6 @@ class GDirectionActivity : AppCompatActivity(), View.OnClickListener
     lateinit var group_id: String
     private lateinit var  mMap: GoogleMap
 
-    var arrParametersName = arrayOfNulls<String>(8)
-    var arrJsonKeys = arrayOfNulls<String>(3)
-    var arrJsonKeys2 = arrayOfNulls<String>(3)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gdirection)
@@ -99,7 +95,7 @@ class GDirectionActivity : AppCompatActivity(), View.OnClickListener
 
         try {
             val findWalkingPath =
-                FindElapsedTime(applicationContext)
+                FindElapsedTime(applicationContext, group_id)
             findWalkingPath.execute("1", API_Key,
                 sLon, sLat,
                 eLon, eLat,

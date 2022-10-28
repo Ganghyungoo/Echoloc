@@ -1,11 +1,14 @@
 package com.example.echoloc.Directions;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.echoloc.GDirectionActivity;
+import com.example.echoloc.GMapsActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -17,14 +20,16 @@ import java.util.ArrayList;
 public class FindElapsedTime extends AsyncTask<String, Void, String> {
 
     Context context;
+    String group_id;
 
     String[] arrParametersName = new String[8];
     String[] arrJsonKeys = new String[3];
     String[] arrJsonKeys2 = new String[3];
 
-    public FindElapsedTime(Context context) {
+    public FindElapsedTime(Context context, String group_id) {
         super();
         this.context = context;
+        this.group_id = group_id;
     }
 
     private String MinuteToSecond(int nSecond) {
@@ -57,9 +62,19 @@ public class FindElapsedTime extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String str) {
         super.onPreExecute();
         String[] array = str.split(",");
-        String strTime = MinuteToSecond(Integer.parseInt(array[0]));
 
-        Toast.makeText(context, "시간 : " + strTime + "\n거리 : " + array[1] + "m", Toast.LENGTH_LONG).show();
+        if (array[0].equals(null) || array[0].equals("null")) {
+            Toast.makeText(context, "거리가 너무 가깝습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, GMapsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("group_id", group_id);
+            context.startActivity(intent);
+        } else {
+            Log.d("time", array[0] + " " + array[0].getClass().getName());
+            String strTime;
+            strTime = MinuteToSecond(Integer.parseInt(array[0]));
+            Toast.makeText(context, "시간 : " + strTime + "\n거리 : " + array[1] + "m", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

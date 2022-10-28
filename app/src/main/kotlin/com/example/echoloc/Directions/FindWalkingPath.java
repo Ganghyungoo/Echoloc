@@ -29,27 +29,6 @@ public class FindWalkingPath extends AsyncTask<String, Void, ArrayList<LatLng>> 
         this.googleMap = googleMap;
     }
 
-    private String MinuteToSecond(int nSecond) {
-        String strText = null;
-        try {
-            if (nSecond >= 3600) {
-                int hour = (nSecond / 3600);
-                int minute = (nSecond % 3600 / 60);
-
-                strText = String.format(("%d시간 %d분"), hour, minute);
-            } else {
-                int minute = (nSecond / 60);
-                strText = String.format(("%d분"), minute);
-            }
-
-            return strText;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -76,8 +55,6 @@ public class FindWalkingPath extends AsyncTask<String, Void, ArrayList<LatLng>> 
 
         TMapWebService tMapWebService = new TMapWebService("https://apis.openapi.sk.com/tmap/routes/pedestrian");
         tMapWebService.setParameters(arrParametersName, args, 8);
-        String totalTime = tMapWebService.connectWebService(arrJsonKeys);
-        String totalDistance = tMapWebService.connectWebService(arrJsonKeys2);
 
         GMapWebService gMapWebService = new GMapWebService("https://apis.openapi.sk.com/tmap/routes/pedestrian");
         gMapWebService.setParameters(arrParametersName, args, 8);
