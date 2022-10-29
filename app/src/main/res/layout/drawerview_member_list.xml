@@ -42,9 +42,9 @@
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:background="@drawable/round_corner"
-            app:layout_constraintBottom_toBottomOf="@+id/relativeLayout5"
+            app:layout_constraintBottom_toBottomOf="@+id/rl_admin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/relativeLayout5" />
+            app:layout_constraintTop_toTopOf="@+id/rl_admin" />
 
         <ImageView
             android:layout_width="20dp"
@@ -53,10 +53,10 @@
             android:layout_marginEnd="-4dp"
             android:src="@drawable/ic_baseline_star_24"
             app:layout_constraintEnd_toEndOf="@+id/iv_adminProfile"
-            app:layout_constraintTop_toTopOf="@+id/relativeLayout5" />
+            app:layout_constraintTop_toTopOf="@+id/rl_admin" />
 
         <RelativeLayout
-            android:id="@+id/relativeLayout5"
+            android:id="@+id/rl_admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
