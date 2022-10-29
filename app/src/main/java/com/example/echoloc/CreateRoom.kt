@@ -57,7 +57,7 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
 
     private  fun createRoom(roomname:String, roompass:String)
     {
-            var model = MessageModel(pref.getData("name")+"님이 그룹을 생성했습니다.", getDateTime(), pref.getData("id"), pref.getData("name"), "1", "0")
+            var model = MessageModel(pref.getData("name")+"님이 그룹을 생성했습니다.", getDateTime(), pref.getData("id"), pref.getData("name"), "1", "0", null)
 
             databaseReference=database.getReference("Echoloc").child("public")
             var key=databaseReference.push().key

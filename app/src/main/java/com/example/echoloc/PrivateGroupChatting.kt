@@ -22,7 +22,7 @@ class PrivateGroupChatting : AppCompatActivity(), View.OnClickListener {
 
         list = ArrayList()
 
-        var model1=MessageModel("Test","dfdf","dsfdsfsd","sdfsdfdsfsd","0","2")
+        var model1=MessageModel("Test","dfdf","dsfdsfsd","sdfsdfdsfsd","0","2", null)
         list.add(model1)
 
 

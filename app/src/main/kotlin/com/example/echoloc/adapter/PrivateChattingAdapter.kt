@@ -52,8 +52,8 @@ class PrivateChattingAdapter(list: ArrayList<MessageModel>, var user_id: String)
 
         var send_message = itemview.send_message
         var recieve_message_layout = itemview.recieve_message_layout
-        var recieve_message_name = itemview.recieve_message_name
-        var recieve_message_time = itemview.recieve_message_time
+//        var recieve_message_name = itemview.recieve_message_name
+//        var recieve_message_time = itemview.recieve_message_time
         var send_message_name = itemview.send_message_name
         var sendmessage_datetime = itemview.sendmessage_datetime
 
@@ -68,8 +68,8 @@ class PrivateChattingAdapter(list: ArrayList<MessageModel>, var user_id: String)
             } else {
                 send_message.visibility = View.GONE
                 recieve_message_layout.visibility = View.VISIBLE
-                recieve_message_name.text = model.message
-                recieve_message_time.text = model.date_time
+//                recieve_message_name.text = model.message
+//                recieve_message_time.text = model.date_time
             }
         }
     }

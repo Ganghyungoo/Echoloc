@@ -93,7 +93,8 @@ class PublicRooms : Fragment(), PublicAdapter.onClick, PrivateAdapter.onClick {
             pref.getData("id"),
             pref.getData("name"),
             "1",
-            "1")
+            "1",
+        null)
 
         var key = databaseReference.push().key
         databaseReference.child(roomModel.group_id).child("members").child(key!!)
