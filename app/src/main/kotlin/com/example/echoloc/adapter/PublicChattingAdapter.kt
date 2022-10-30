@@ -1,9 +1,12 @@
 package com.example.echoloc.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.echoloc.R
@@ -11,10 +14,11 @@ import com.example.echoloc.model.MessageModel
 import kotlinx.android.synthetic.main.rv_message.view.*
 import kotlinx.android.synthetic.main.rv_other.view.*
 
-class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
+class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String, context: Context):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var list: ArrayList<MessageModel> = list
     var user_id: String = user_id
+    var context: Context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view:View
@@ -34,6 +38,16 @@ class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
         } else {
             (holder as GroupJoinedModel).bindView(list[position])
         }
+
+//        holder.itemView.receive_message_profile.setOnClickListener {
+//            val mDialogView = LayoutInflater.from(context).inflate(R.layout.activity_profile, null)
+//            val mBuilder = AlertDialog.Builder(context)
+//            mBuilder.setView(mDialogView)
+//
+//            val mAlertDialog = mBuilder.show()
+//
+//            val mUserProfileImg = mDialogView.findViewById<ImageView>()
+//        }
     }
 
     override fun getItemCount(): Int {

@@ -30,7 +30,7 @@ class CreateRoom : AppCompatActivity() ,View.OnClickListener{
         database=FirebaseDatabase.getInstance()
         databaseReference1 = database.getReference("Echoloc").child("chattings")
 
-        usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),"",pref.getData("call"),pref.getData("profileImageUrl"));
+        usermodel=Usermodel(pref.getData("id"),pref.getData("name"),pref.getData("email"),"",pref.getData("call"),pref.getData("profile"));
     }
 
     override fun onClick(p0: View?) {

@@ -19,6 +19,7 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/round_corner"
             android:src="@mipmap/ic_launcher"
+            android:clickable="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,6 +113,7 @@
                 android:textSize="13sp"/>
 
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
 

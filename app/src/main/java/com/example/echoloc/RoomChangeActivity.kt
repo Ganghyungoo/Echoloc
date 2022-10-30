@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.RoomModel
 import com.google.firebase.database.*
@@ -36,9 +37,10 @@ class RoomChangeActivity : AppCompatActivity(), View.OnClickListener {
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 roommodel = snapshot.getValue(RoomModel::class.java)!!
+                Glide.with(this@RoomChangeActivity).load(roommodel.admin_profileImageUrl).into(iv_roomImg)
+                iv_roomImg.clipToOutline = true
                 change_roomname.hint = roommodel.roomname
                 change_roompass.hint = roommodel.roompass
-                roompass_check.hint=roommodel.roompass
             }
 
             override fun onCancelled(error: DatabaseError) {

@@ -14,9 +14,10 @@
         android:layout_margin="10sp" >
 
         <ImageView
+            android:id="@+id/iv_roomImg"
             android:layout_width="40sp"
             android:layout_height="40sp"
-            android:src="@drawable/et_background" />
+            android:background="@drawable/round_corner" />
 
         <RelativeLayout
             android:layout_width="match_parent"

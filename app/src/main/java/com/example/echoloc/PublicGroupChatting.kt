@@ -66,7 +66,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
         var manager = LinearLayoutManager(applicationContext)
         manager.stackFromEnd = true
         recyclerview.layoutManager=manager
-        adapter = PublicChattingAdapter(list, pref.getData("id"))
+        adapter = PublicChattingAdapter(list, pref.getData("id"), this)
         recyclerview.adapter = adapter
 
         // 네비게이션 바
@@ -294,7 +294,6 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
                         "0",
                         pref.getData("profile")
                     )
-                    Log.d("avd", pref.getData("profile"))
                     var key = databaseReference.push().key
                     databaseReference.child(group_id).child(key!!).setValue(model)
                         .addOnCompleteListener {

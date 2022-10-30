@@ -2,11 +2,16 @@ package com.example.echoloc
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
@@ -18,10 +23,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import com.bumptech.glide.Glide
 import com.example.echoloc.database.Pref
 import com.example.echoloc.model.LocationModel
+import com.example.echoloc.model.MessageModel
 import com.example.echoloc.model.Usermodel
+import com.example.echoloc.util.getDateTime
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -33,13 +41,11 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_gmaps.*
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
-import java.net.URLConnection
 
 class GMapsActivity : AppCompatActivity(), View.OnClickListener
     , OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -57,7 +63,8 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
     lateinit var markers: ArrayList<MarkerOptions>
     lateinit var bitmaps: ArrayList<Bitmap>
 
-    var flag = 0
+    lateinit var group_title: String
+    lateinit var myBitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,16 +81,18 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         pref = Pref(applicationContext)
         group_id = intent.extras!!.getString("group_id", "")
+        group_title = intent.extras!!.getString("group_title", "")
         database = FirebaseDatabase.getInstance()
         databaseReference = database.getReference("Echoloc").child("location").child(group_id)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        markers = ArrayList()
-        bitmaps = ArrayList()
-
-        markers = ArrayList()
+        CoroutineScope(Dispatchers.Main).launch {
+            myBitmap = withContext(Dispatchers.IO) {
+                BitmapFactory.decodeStream(URL(pref.getData("profile")).openStream())
+            }
+        }
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.gMap) as SupportMapFragment
@@ -294,7 +303,50 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
             }
 
             btn_call -> {
-                // 호출 <<<< 주원이가 한 거 추가
+                // 호출
+                val messageModel = MessageModel(pref.getData("name") + "님이 긴급호출을 요청했습니다.", getDateTime(), pref.getData("id"), pref.getData("name"), "1", "0", null)
+                val databaseReference2 = database.getReference("Echoloc").child("chattings")
+                val key = databaseReference2.push().key
+                databaseReference2.child(group_id).child(key!!).setValue(messageModel)
+
+                //알림(Notification)을 관리하는 관리자 객체를 운영체제(Context)로부터 소환하기
+                val notificationManager =
+                    getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+                var builder: NotificationCompat.Builder? = null
+
+                //Oreo 버전(API26 버전)이상에서는 알림시에 NotificationChannel 이라는 개념이 필수 구성요소가 됨.
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                    var channelID = "channel_01"
+                    var channelName = "Echoloc"
+
+                    //알림채널 객체 만들기
+                    val channel = NotificationChannel(
+                        channelID,
+                        channelName,
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+
+                    notificationManager.createNotificationChannel(channel)
+                    builder = NotificationCompat.Builder(this, channelID)
+                }
+
+                builder!!.setSmallIcon(R.drawable.logo)
+                builder.setLargeIcon(myBitmap)
+                builder.setContentTitle(group_title)
+                builder.setContentText(pref.getData("name") + "님이 긴급호출을 요청했습니다.")
+
+                val intent = Intent(applicationContext, PublicGroupChatting::class.java)
+                intent.putExtra("group_id", group_id)
+                val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+                builder.setContentIntent(pendingIntent)
+
+                // 알림 진동 설정
+                builder.setVibrate(longArrayOf(0, 2000, 1000, 3000))
+
+
+                var notification = builder.build()
+                notificationManager.notify(1, notification)
             }
 
             btn_setting -> {

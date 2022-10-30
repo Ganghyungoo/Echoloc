@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.echoloc.GMapsActivity
 import com.example.echoloc.R
 import com.example.echoloc.RoomChangeActivity
@@ -26,6 +27,7 @@ class PublicAdapter(
         var joinroom = itemView.joinroom
         var txt_roomname = itemView.txt_roomname
         var roomset=itemView.roomset
+        var roomImg = itemView.iv_roomImg
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,6 +37,8 @@ class PublicAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.txt_roomname.text = list[position].roomname
+        Glide.with(context).load(list[position].admin_profileImageUrl).into(holder.roomImg)
+        holder.roomImg.clipToOutline = true
 
         if (list[position].isgroupjoined || list[position].admin_id == user_id) {
             holder.joinroom.visibility = View.GONE
@@ -74,6 +78,7 @@ class PublicAdapter(
             if (holder.joinroom.visibility == View.GONE) {
                 var intent = Intent(context,GMapsActivity::class.java)
                 intent.putExtra("group_id", list[position].group_id)
+                intent.putExtra("group_title", list[position].roomname)
                 context.startActivity(intent)
             }
         }
