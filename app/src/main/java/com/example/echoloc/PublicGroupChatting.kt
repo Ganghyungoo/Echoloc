@@ -66,7 +66,7 @@ class PublicGroupChatting : AppCompatActivity(), View.OnClickListener {
         var manager = LinearLayoutManager(applicationContext)
         manager.stackFromEnd = true
         recyclerview.layoutManager=manager
-        adapter = PublicChattingAdapter(list, pref.getData("id"), this)
+        adapter = PublicChattingAdapter(list, pref.getData("id"))
         recyclerview.adapter = adapter
 
         // 네비게이션 바

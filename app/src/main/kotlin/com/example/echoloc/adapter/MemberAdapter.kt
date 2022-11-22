@@ -1,5 +1,6 @@
 package com.example.echoloc.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -37,6 +38,7 @@ class MemberAdapter (var context: Context, var group_id: String)
 
         fun bind(item: Usermodel) {
             tv_name.text = item.name
+            Log.d("image", item.profileImageUrl)
             Glide.with(itemView).load(Uri.parse(item.profileImageUrl)).into(iv_profile)
             iv_profile.clipToOutline = true
         }
@@ -47,7 +49,7 @@ class MemberAdapter (var context: Context, var group_id: String)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
         holder.itemView.setOnClickListener {

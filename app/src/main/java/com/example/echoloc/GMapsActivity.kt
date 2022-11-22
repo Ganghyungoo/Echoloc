@@ -14,6 +14,7 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -62,6 +63,7 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
 
     lateinit var markers: ArrayList<MarkerOptions>
     lateinit var bitmaps: ArrayList<Bitmap>
+    lateinit var url: String
 
     lateinit var group_title: String
     lateinit var myBitmap: Bitmap
@@ -88,11 +90,6 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        CoroutineScope(Dispatchers.Main).launch {
-            myBitmap = withContext(Dispatchers.IO) {
-                BitmapFactory.decodeStream(URL(pref.getData("profile")).openStream())
-            }
-        }
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.gMap) as SupportMapFragment
@@ -332,7 +329,6 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
                 }
 
                 builder!!.setSmallIcon(R.drawable.logo)
-                builder.setLargeIcon(myBitmap)
                 builder.setContentTitle(group_title)
                 builder.setContentText(pref.getData("name") + "님이 긴급호출을 요청했습니다.")
 

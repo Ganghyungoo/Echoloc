@@ -14,11 +14,10 @@ import com.example.echoloc.model.MessageModel
 import kotlinx.android.synthetic.main.rv_message.view.*
 import kotlinx.android.synthetic.main.rv_other.view.*
 
-class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String, context: Context):
+class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String):
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var list: ArrayList<MessageModel> = list
     var user_id: String = user_id
-    var context: Context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view:View
@@ -47,7 +46,7 @@ class PublicChattingAdapter(list: ArrayList<MessageModel>, user_id: String, cont
 //            val mAlertDialog = mBuilder.show()
 //
 //            val mUserProfileImg = mDialogView.findViewById<ImageView>()
-//        }
+//        }kj
     }
 
     override fun getItemCount(): Int {

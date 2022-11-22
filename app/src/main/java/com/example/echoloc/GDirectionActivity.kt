@@ -82,16 +82,18 @@ class GDirectionActivity : AppCompatActivity(), View.OnClickListener
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(sLat.toDouble(), sLon.toDouble()), 17.5F))
         mMap.isMyLocationEnabled = true
-        CoroutineScope(Dispatchers.Main).launch {
-            var bitmap = withContext(Dispatchers.IO) {
-                BitmapFactory.decodeStream(URL(profile).openStream())
-            }
-            bitmap = Bitmap.createScaledBitmap(bitmap, 80, 80, false)
-            mMap.addMarker(MarkerOptions().position(LatLng(eLat.toDouble(), eLon.toDouble()))
-                .title(eName)
-                .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
-        }
+//        CoroutineScope(Dispatchers.Main).launch {
+//            var bitmap = withContext(Dispatchers.IO) {
+//                BitmapFactory.decodeStream(URL(profile).openStream())
+//            }
+//            bitmap = Bitmap.createScaledBitmap(bitmap, 80, 80, false)
+//            mMap.addMarker(MarkerOptions().position(LatLng(eLat.toDouble(), eLon.toDouble()))
+//                .title(eName)
+//                .icon(BitmapDescriptorFactory.fromBitmap(bitmap)))
+//        }
 
+        mMap.addMarker(MarkerOptions().position(LatLng(eLat.toDouble(), eLon.toDouble()))
+            .title(eName))
 
         try {
             val findWalkingPath =
