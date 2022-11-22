@@ -209,7 +209,7 @@ class GMapsActivity : AppCompatActivity(), View.OnClickListener
         }
     }
 
-    // 마커 생성 이벤트
+    // 마커 생성 이벤트!
     private fun getMarker() {
         databaseReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
